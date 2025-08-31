@@ -1,4 +1,4 @@
-package org.curs.tvui;
+package org.curs.AppClient;
 
 public class Main {
     public static void main(String[] args) {

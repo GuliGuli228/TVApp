@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="98.0" prefWidth="1280.0">
@@ -26,19 +25,24 @@
                   <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" visible="false" />
                </children>
             </Pane>
-            <FlowPane id="MenuBar" alignment="CENTER" hgap="100.0" prefHeight="109.0" prefWidth="1153.0" stylesheets="@../Styles.css">
+            <FlowPane id="MenuBar" alignment="CENTER" hgap="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1181.0" stylesheets="@../Styles.css">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Договоры">
+                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Договоры" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Заказчики">
+                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Заказчики" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Ролики">
+                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Ролики" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Передачи" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -49,7 +53,7 @@
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button id="AddButton" minHeight="70.0" minWidth="70.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" stylesheets="@../Styles.css" text="+">
+            <Button id="AddButton" fx:id="AgentAddButton" minHeight="70.0" minWidth="70.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" stylesheets="@../Styles.css" text="+">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
@@ -62,7 +66,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
                <children>
-                  <ImageView fitHeight="70.0" fitWidth="70.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="AgentReloadButton" fitHeight="70.0" fitWidth="70.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Images/Reload.png" />
                      </image>

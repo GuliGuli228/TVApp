@@ -1,0 +1,75 @@
+#MenuBar{
+    -fx-background-color: #013686;
+}
+.button.MenuButtons{
+    -fx-font-family: Roboto;
+    -fx-font-weight: 700;
+    -fx-background-color: transparent;
+    -fx-color: white;
+    -fx-font-size: 25px;
+
+}
+.button.MenuButtons:hover {
+    -fx-border-radius: 20;
+    -fx-border-width: 4;
+    -fx-border-color: white;
+}
+
+#SignInButton{
+    -fx-background-color: #013686 ;
+    -fx-border-radius: 10;
+}
+#WelcomeLable{
+    -fx-font-family: Roboto;
+}
+#AddButton{
+    -fx-background-color: transparent;
+    -fx-border-width: 3;
+    -fx-border-radius: 10;
+    -fx-border-color: black;
+}
+#ReloadButton{
+    -fx-background-color: transparent;
+    -fx-border-width: 3;
+    -fx-border-radius: 10;
+    -fx-border-color: black;
+}
+#ReloadButton:hover {
+    -fx-border-color: #0b55c3;
+}
+#AddButton:hover{
+    -fx-border-color: #0b55c3;
+}
+#AccountButton:hover{
+    -fx-border-radius: 20;
+    -fx-border-width: 4;
+    -fx-border-color: white;
+}
+.button.AddCustButt{
+    -fx-background-color: #013686;
+    -fx-font-family: Roboto;
+    -fx-font-size: 20px;
+}
+.label.AddCustLabel{
+    -fx-font-family: Roboto;
+    -fx-font-weight: 900;
+}
+#AccountName{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+#ExitButton{
+    -fx-text-fill: white;
+    -fx-background-color: #d91e1e;
+    -fx-border-width: 3;
+    -fx-border-color: white;
+
+}
+#ExitButton:hover{
+    -fx-text-fill: #d91e1e;
+    -fx-background-color: white;
+    -fx-border-color: #d91e1e;
+}
+
+

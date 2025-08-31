@@ -1,14 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <HBox prefHeight="98.0" prefWidth="1280.0">
+            <children>
+                <Pane prefHeight="100.0" prefWidth="100.0" stylesheets="@../Styles.css">
+                    <children>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Images/Icon.png" />
+                            </image>
+                        </ImageView>
+                        <Button id="AccountButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" stylesheets="@../Styles.css" text="Button" textFill="TRANSPARENT" visible="false" />
+                    </children>
+                </Pane>
+                <FlowPane id="MenuBar" alignment="CENTER" hgap="40.0" minHeight="100.0" prefHeight="100.0" prefWidth="1182.0" stylesheets="@../Styles.css">
+                    <children>
+                        <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Договоры" textFill="WHITE">
+                            <font>
+                                <Font size="25.0" />
+                            </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Заказчики" textFill="WHITE">
+                            <font>
+                                <Font size="25.0" />
+                            </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Ролики" textFill="WHITE">
+                            <font>
+                                <Font size="25.0" />
+                            </font>
+                        </Button>
+                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Агенты" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Финансы" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                    </children>
+                </FlowPane>
+            </children>
+        </HBox>
+        <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <Button id="AddButton" minHeight="70.0" minWidth="70.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" stylesheets="@../Styles.css" text="+">
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="10.0" />
+                    </HBox.margin>
+                </Button>
+                <Pane id="ReloadButton" minHeight="70.0" minWidth="70.0" prefHeight="70.0" prefWidth="70.0" stylesheets="@../Styles.css">
+                    <HBox.margin>
+                        <Insets left="10.0" />
+                    </HBox.margin>
+                    <children>
+                        <Button minHeight="70.0" minWidth="70.0" mnemonicParsing="false" text="Button" visible="false" />
+                        <ImageView fitHeight="60.0" fitWidth="60.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" x="5.0" y="5.0">
+                            <image>
+                                <Image url="@../Images/Reload.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+               <padding>
+                  <Insets left="5.0" top="5.0" />
+               </padding>
+                </Pane>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <padding>
+                <Insets bottom="10.0" top="10.0" />
+            </padding>
+        </HBox>
+        <ScrollPane prefHeight="614.0" prefWidth="1280.0">
+            <content>
+                <VBox prefHeight="524.0" prefWidth="1276.0" />
+            </content>
+        </ScrollPane>
+    </children>
+</VBox>

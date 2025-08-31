@@ -1,9 +1,10 @@
-package org.curs.tvui;
+package org.curs.AppClient;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.curs.tvapp.TvApp;
-import org.curs.tvui.ScenesControllers.SceneManager;
+import org.curs.AppClient.ScenesControllers.WelcomeSceneController;
+import org.curs.AppServer.TvApp;
+import org.curs.AppClient.ScenesControllers.SceneManager;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
@@ -23,7 +24,7 @@ public class JavaFXApp extends Application {
         stage.setHeight(720);
         stage.setResizable(false);
         stage.setTitle("TV Application");
-        SceneManager.showScene("WelcomeScene", stage);
+        SceneManager.showScene("WelcomeScene", stage, WelcomeSceneController.class);
     }
 
     // При остановке приложения отключаю сервер

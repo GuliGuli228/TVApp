@@ -1,4 +1,4 @@
-package org.curs.tvapp;
+package org.curs.AppServer;
 
 
 import org.springframework.boot.SpringApplication;

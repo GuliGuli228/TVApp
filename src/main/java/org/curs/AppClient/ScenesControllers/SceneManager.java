@@ -1,4 +1,4 @@
-package org.curs.tvui.ScenesControllers;
+package org.curs.AppClient.ScenesControllers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,11 +17,14 @@ public class SceneManager {
     // Добавляю все сцены и их пути, чтобы можно было переключаться между сценами по их названиям
     static {
             scenePaths.put("WelcomeScene", "/FXMLScenes/WelcomeScene.fxml");
+            scenePaths.put("AgentScene", "/FXMLScenes/AgentScene.fxml");
     }
 
-    public static void showScene(String sceneName, Stage stage) throws IOException {
-        String path = scenePaths.get(sceneName);
-        Scene scene = new  Scene(FXMLLoader.load(Objects.requireNonNull(SceneManager.class.getResource(path))));
+    public static void showScene(String sceneName, Stage stage, Object controller) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(SceneManager.class.getResource(scenePaths.get(sceneName))));
+        loader.setController(controller);
+        Parent root = loader.load();
+        Scene scene = new  Scene(root);
         stage.setScene(scene);
         stage.show();
     }

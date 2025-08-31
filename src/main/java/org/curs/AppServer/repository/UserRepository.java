@@ -1,4 +1,7 @@
 package org.curs.AppServer.repository;
 
-public interface UserRepository {
+import org.curs.AppServer.entities.Customer;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<Customer,Integer> {
 }
