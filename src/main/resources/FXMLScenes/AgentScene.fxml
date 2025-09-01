@@ -68,7 +68,7 @@
                <children>
                   <ImageView fx:id="AgentReloadButton" fitHeight="70.0" fitWidth="70.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Images/Reload.png" />
+                        <Image url="@../Images/reload.png" />
                      </image>
                   </ImageView>
                   <Button minHeight="70.0" minWidth="70.0" mnemonicParsing="false" text="Button" visible="false" />
