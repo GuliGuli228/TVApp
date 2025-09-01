@@ -1,15 +1,18 @@
 package org.curs.AppServer.entities;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 @Entity
 @Table(name = "agent")
 @Data
 public class Agent {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "agent_id")
+    @Setter(AccessLevel.NONE)
     private Integer id;
 
     @Column(name = "percent")

@@ -1,7 +1,9 @@
 package org.curs.AppServer.entities;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -13,6 +15,7 @@ public class Playback {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Integer id;
 
     @Column(name = "playback_time")

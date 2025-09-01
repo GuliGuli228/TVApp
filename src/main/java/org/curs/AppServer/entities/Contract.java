@@ -1,7 +1,9 @@
 package org.curs.AppServer.entities;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 @Entity
 @Table(name = "contract" )
@@ -9,6 +11,7 @@ import lombok.Data;
 public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Integer id;
 
     @ManyToOne

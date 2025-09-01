@@ -1,6 +1,7 @@
 package org.curs.AppServer.entities;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import lombok.Setter;
 public class Customer {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Integer id;
 
     @Column(name = "iban")
