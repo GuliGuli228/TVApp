@@ -28,7 +28,7 @@
                   <Font size="50.0" />
                </font>
             </Label>
-            <TextField id="LoginField" promptText="Login" stylesheets="@../Styles.css">
+            <TextField id="LoginField" fx:id="loginField" promptText="Login" stylesheets="@../Styles.css">
                <VBox.margin>
                   <Insets bottom="30.0" left="100.0" right="100.0" />
                </VBox.margin>
@@ -36,7 +36,7 @@
                   <Font size="25.0" />
                </font>
             </TextField>
-            <PasswordField id="PasswordField" promptText="Password">
+            <PasswordField id="PasswordField" fx:id="passwordField" promptText="Password">
                <font>
                   <Font size="25.0" />
                </font>
@@ -44,7 +44,7 @@
                   <Insets bottom="20.0" left="100.0" right="100.0" />
                </VBox.margin>
             </PasswordField>
-            <Button id="SignInButton" alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="866.0" stylesheets="@../Styles.css" text="Sing In" textFill="WHITE">
+            <Button id="SignInButton" fx:id="loginButton" alignment="CENTER" mnemonicParsing="false" onAction="#getData" prefHeight="52.0" prefWidth="866.0" stylesheets="@../Styles.css" text="Sing In" textFill="WHITE">
                <font>
                   <Font size="25.0" />
                </font>
