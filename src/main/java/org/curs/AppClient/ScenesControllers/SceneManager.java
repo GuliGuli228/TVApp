@@ -5,7 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.curs.AppClient.AppContext;
+import org.curs.AppClient.AppCache;
 import org.curs.AppClient.JavaFXApp;
 import org.curs.AppClient.ScenesControllers.AdminControllers.*;
 import org.curs.AppClient.ScenesControllers.AgentContollers.AgentContractController;
@@ -47,9 +47,10 @@ public class SceneManager {
         logger.info("current controller: " + loader.getController().getClass().getName());
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.show();
     }
     public static void switchScene(Scenes scene){
-        String roleName = AppContext.getRole();
+        String roleName = AppCache.getRole();
         Object controller = null;
         switch (scene){
             case ADMIN_CONTRACTS -> controller = new AdminContractController();
