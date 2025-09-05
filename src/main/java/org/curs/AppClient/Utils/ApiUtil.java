@@ -30,28 +30,33 @@ public class ApiUtil {
         return connection;
     }
 
-    public static JsonObject getUserData(String apiPath, String login, String password) throws IOException {
-        URL url = new URL(SERVER_URL + apiPath + "?login=" + login);
+    public static JsonObject getUserData(String apiPath, String login) throws IOException {
+        return ApiUtil.getData(apiPath + "?login=" + login);
+    }
+    public static JsonObject getAgentContractsById(String apiPath, Integer id) throws IOException{
+        return ApiUtil.getData(apiPath + "?id=" + id);
+    }
+
+    public static JsonObject getData(String apiPath) throws IOException{
+        URL url = new URL(SERVER_URL + apiPath);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept", "application/json");
         connection.setDoOutput(true);
 
-        InputStream inputStream = connection.getInputStream();
-        BufferedReader reader =  new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
 
+        InputStream input = connection.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"));
 
         StringBuilder sb = new StringBuilder();
         String line;
-        while ((line = reader.readLine()) != null) {
+        while ((line = reader.readLine()) != null){
             sb.append(line);
         }
-
-        inputStream.close();
+        input.close();
         reader.close();
         connection.disconnect();
 
-        return  new JsonParser().parse(sb.toString()).getAsJsonObject();
+        return new JsonParser().parse(sb.toString()).getAsJsonObject();
     }
-
 }
