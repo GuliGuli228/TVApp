@@ -1,6 +1,7 @@
 package org.curs.AppServer.controllers;
 
 import org.curs.AppServer.entities.Contract;
+import org.curs.AppServer.model.DTO.AdminContractResponse;
 import org.curs.AppServer.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,5 +28,11 @@ public class ContractController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<AdminContractResponse>> getAll(){
+        Optional<List<AdminContractResponse>> contractResponses = contractService.getAllContractsForAdmin();
+        if(contractResponses.isPresent()) return new ResponseEntity<>(contractResponses.get(), HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
 }
