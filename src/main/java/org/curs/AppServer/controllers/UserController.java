@@ -1,6 +1,8 @@
 package org.curs.AppServer.controllers;
 
+import org.curs.AppServer.entities.Agent;
 import org.curs.AppServer.entities.User;
+import org.curs.AppServer.repository.AgentRepository;
 import org.curs.AppServer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private AgentRepository agentRepository;
 
     @GetMapping("/id")
     public ResponseEntity<User> getUserById(@RequestParam Integer id) {
@@ -43,8 +47,18 @@ public class UserController {
         Optional<User> user = userService.findByLogin(login);
 
         if(user.isEmpty()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        if(user.get().getPassword().equals(password)) return new ResponseEntity<>(user.get(), HttpStatus.OK);
+        if(user.get().getPassword().equals(password)) {
+            log.info("authenticated user with login: " + login + " and password: " + password);
+            return new ResponseEntity<>(user.get(), HttpStatus.OK);
+        }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+    @PostMapping("/addAgent")
+    public ResponseEntity<User> addUser(@RequestBody Agent agent){
+        log.info("adding user: " + agent);
+        agentRepository.save(agent);
+        return ResponseEntity.ok().build();
     }
 
 }
