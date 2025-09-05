@@ -13,6 +13,7 @@ public class Agent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
+    @Column(name = "agent_id")
     private Integer id;
 
     @Column(name = "percent")

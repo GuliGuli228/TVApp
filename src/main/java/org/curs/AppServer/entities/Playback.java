@@ -16,13 +16,14 @@ public class Playback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
+    @Column(name = "playback_id")
     private Integer id;
 
     @Column(name = "playback_time")
-    private Time playbackTime;
+    private String playbackTime;
 
     @Column(name = "playback_date")
-    private Date playbackDate;
+    private String playbackDate;
 
     @Column(name = "price")
     private Double price;
@@ -30,4 +31,13 @@ public class Playback {
     @ManyToOne
     @JoinColumn(name = "contract_id", nullable = false)
     private Contract contract;
+
+    @ManyToOne
+    @JoinColumn(name = "promo_id", nullable = false)
+    private Promo promo;
+
+    @ManyToOne
+    @JoinColumn(name = "telecast_id", nullable = false)
+    private Telecast telecast;
+
 }

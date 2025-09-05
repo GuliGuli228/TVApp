@@ -15,10 +15,11 @@ public class Promo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
+    @Column(name = "promo_id")
     private Integer id;
 
     @Column(name = "duration")
-    private Time duration;
+    private String duration;
 
     @Column(name = "promo_url")
     private String promoUrl;
@@ -27,7 +28,4 @@ public class Promo {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    @ManyToOne
-    @JoinColumn(name = "playback_id", nullable = false)
-    private Playback playback;
 }

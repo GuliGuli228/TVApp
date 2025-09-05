@@ -14,6 +14,7 @@ public class Telecast {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
+    @Column(name = "telecast_id")
     private Integer id;
 
     @Column(name = "rating")
@@ -25,7 +26,4 @@ public class Telecast {
     @Column(name = "telecast_name")
     private String telecastName;
 
-    @ManyToOne
-    @JoinColumn(name = "playback_id", nullable = false)
-    private Playback playback;
 }

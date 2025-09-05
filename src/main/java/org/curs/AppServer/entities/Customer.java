@@ -14,6 +14,7 @@ public class Customer {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
+    @Column(name = "customer_id")
     private Integer id;
 
     @Column(name = "iban")

@@ -12,6 +12,7 @@ public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
+    @Column(name = "contract_id")
     private Integer id;
 
     @ManyToOne
