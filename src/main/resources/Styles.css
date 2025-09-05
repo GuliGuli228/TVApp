@@ -6,10 +6,21 @@
     -fx-font-weight: 700;
     -fx-background-color: transparent;
     -fx-color: white;
+    -fx-font-size: 20px;
+}
+.button.AgentMenuButtons{
+    -fx-font-family: Roboto;
+    -fx-font-weight: 700;
+    -fx-background-color: transparent;
+    -fx-color: white;
     -fx-font-size: 25px;
-
 }
 .button.MenuButtons:hover {
+    -fx-border-radius: 20;
+    -fx-border-width: 4;
+    -fx-border-color: white;
+}
+.button.AgentMenuButtons:hover {
     -fx-border-radius: 20;
     -fx-border-width: 4;
     -fx-border-color: white;
