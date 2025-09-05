@@ -25,27 +25,35 @@
                   <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" visible="false" />
                </children>
             </Pane>
-            <FlowPane id="MenuBar" alignment="CENTER" hgap="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1181.0" stylesheets="@../Styles.css">
+            <FlowPane id="MenuBar" alignment="CENTER" hgap="35.0" minHeight="100.0" prefHeight="100.0" prefWidth="1181.0" stylesheets="@../Styles.css">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Договоры" textFill="WHITE">
+                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Договоры" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Заказчики" textFill="WHITE">
+                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="219.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Эфир показов" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Ролики" textFill="WHITE">
+                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Заказчики" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Передачи" textFill="WHITE">
+                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Ролики" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Передачи" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets />
+                     </FlowPane.margin>
                   </Button>
                </children>
             </FlowPane>

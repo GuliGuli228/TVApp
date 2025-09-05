@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -25,29 +26,39 @@
                         <Button id="AccountButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" stylesheets="@../Styles.css" text="Button" textFill="TRANSPARENT" visible="false" />
                     </children>
                 </Pane>
-                <FlowPane id="MenuBar" alignment="CENTER" hgap="40.0" minHeight="100.0" prefHeight="100.0" prefWidth="1182.0" stylesheets="@../Styles.css">
+                <FlowPane id="MenuBar" alignment="CENTER" hgap="20.0" minHeight="100.0" prefHeight="100.0" prefWidth="1182.0" stylesheets="@../Styles.css">
                     <children>
-                        <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Договоры" textFill="WHITE">
+                        <Button fx:id="ContractButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="129.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Договоры" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Button>
+                  <Button fx:id="PlaybackButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="169.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Эфир показов" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                        <Button fx:id="CustomersButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="133.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Заказчики" textFill="WHITE">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="PromosButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="115.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Ролики" textFill="WHITE">
                             <font>
                                 <Font size="25.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Заказчики" textFill="WHITE">
-                            <font>
-                                <Font size="25.0" />
-                            </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Ролики" textFill="WHITE">
-                            <font>
-                                <Font size="25.0" />
-                            </font>
-                        </Button>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Агенты" textFill="WHITE">
+                  <Button fx:id="AgentsButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="119.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Агенты" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Финансы" textFill="WHITE">
+                  <Button fx:id="FinancesButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="116.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Финансы" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="TelecastButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="147.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Программы" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -58,7 +69,7 @@
         </HBox>
         <HBox prefHeight="100.0" prefWidth="200.0">
             <children>
-                <Button id="AddButton" minHeight="70.0" minWidth="70.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" stylesheets="@../Styles.css" text="+">
+                <Button id="AddButton" fx:id="AdminAddButton" minHeight="70.0" minWidth="70.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" stylesheets="@../Styles.css" text="+">
                     <font>
                         <Font name="System Bold" size="30.0" />
                     </font>
@@ -74,7 +85,7 @@
                         <Button minHeight="70.0" minWidth="70.0" mnemonicParsing="false" text="Button" visible="false" />
                         <ImageView fitHeight="60.0" fitWidth="60.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" x="5.0" y="5.0">
                             <image>
-                                <Image url="@../Images/Reload.png" />
+                                <Image url="@../Images/reload.png" />
                             </image>
                         </ImageView>
                     </children>
@@ -82,6 +93,11 @@
                   <Insets left="5.0" top="5.0" />
                </padding>
                 </Pane>
+            <Label fx:id="TextLable" text="Label">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
             </children>
             <opaqueInsets>
                 <Insets />
@@ -92,7 +108,7 @@
         </HBox>
         <ScrollPane prefHeight="614.0" prefWidth="1280.0">
             <content>
-                <VBox prefHeight="524.0" prefWidth="1276.0" />
+                <VBox fx:id="ContentVbox" prefHeight="524.0" prefWidth="1276.0" />
             </content>
         </ScrollPane>
     </children>
