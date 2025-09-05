@@ -3,21 +3,34 @@ package org.curs.AppClient.ScenesControllers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.curs.AppClient.AppContext;
+import org.curs.AppClient.JavaFXApp;
+import org.curs.AppClient.ScenesControllers.AdminControllers.*;
+import org.curs.AppClient.ScenesControllers.AgentContollers.AgentContractController;
+import org.curs.AppClient.ScenesControllers.AgentContollers.AgentCustomersController;
+import org.curs.AppClient.ScenesControllers.AgentContollers.AgentPlaybackController;
+import org.curs.AppClient.ScenesControllers.CommonControllers.PromoController;
+import org.curs.AppClient.ScenesControllers.CommonControllers.TelecastController;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 public class SceneManager {
+    private static final Logger logger = Logger.getLogger(SceneManager.class.getName());
 
     private final static Map<String, String> scenePaths = new HashMap<>();
+
 
     // Добавляю все сцены и их пути, чтобы можно было переключаться между сценами по их названиям
     static {
             scenePaths.put("WelcomeScene", "/FXMLScenes/WelcomeScene.fxml");
             scenePaths.put("AgentScene", "/FXMLScenes/AgentScene.fxml");
+            scenePaths.put("AdminScene", "/FXMLScenes/AdminScene.fxml");
     }
 
     public static void showScene(String sceneName, Stage stage, Object controller) {
@@ -34,7 +47,6 @@ public class SceneManager {
         logger.info("current controller: " + loader.getController().getClass().getName());
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();
     }
     public static void switchScene(Scenes scene){
         String roleName = AppContext.getRole();
