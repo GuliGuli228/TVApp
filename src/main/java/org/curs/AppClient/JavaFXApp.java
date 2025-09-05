@@ -3,7 +3,7 @@ package org.curs.AppClient;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import lombok.Getter;
-import org.curs.AppClient.ScenesControllers.WelcomeSceneController;
+import org.curs.AppClient.ScenesControllers.CommonControllers.WelcomeSceneController;
 import org.curs.AppServer.TvApp;
 import org.curs.AppClient.ScenesControllers.SceneManager;
 import org.springframework.boot.SpringApplication;
@@ -15,7 +15,7 @@ public class JavaFXApp extends Application {
     private ConfigurableApplicationContext context;
     //Сцена для отрисовки в других классах
     @Getter
-    private Stage primaryStage;
+    private static Stage primaryStage;
 
     //Запускаю сервер перед javaFx
     @Override
