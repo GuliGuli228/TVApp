@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.logging.Logger;
 
 @Service
@@ -31,22 +28,22 @@ public class ContractService {
         log.info("getting all contracts by agent id: " + id);
         return contractRepository.findAllByAgentId(id);
     }
+    public Optional<List<AdminContractResponse>> getAllContractsForAdmin(){
+        List<AdminContractResponse> response = new ArrayList<>();
+        Optional<List<Contract>> contracts = Optional.of(contractRepository.findAll());
 
-    /*public Optional<List<AdminContractResponse>> getAllContractsForAdmin(){
-        log.info("getting all contracts for admin");
-        Optional<List<Contract>> allContracts = Optional.of(contractRepository.findAll());
-        Optional<List<Playback>> allPlaybacks = Optional.of(playbackRepository.findAll());
-        List<AdminContractResponse> adminContracts = new ArrayList<>();
-        for(Contract contract : allContracts.get()){
-            for(Playback playback : allPlaybacks.get()){
-                Integer contractId = contract.getId();
-                Integer agentId = contract.getAgent().getId();
-                Date playbackDate = playback.getPlaybackDate();
-                Time playbackTime = playback.getPlaybackTime();
-                Double plaba
-                String telecast = telecastRepository.findByPlaybackId(playback.getId()).get().getTelecastName();
-                adminContracts.add(new AdminContractResponse(contractId,agentId,playbackDate,playbackTime,telecast))
-            }
+        for (Contract contract : contracts.get()) {
+
+            Optional<List<Playback>> playbacks = playbackRepository.findAllByContract_Id(contract.getId());
+
+            Integer contract_id = contract.getId();
+            Integer agent_id = contract.getAgent().getId();
+            Integer customer_id = contract.getCustomer().getId();
+            Double price = playbacks.stream().flatMap(List::stream).mapToDouble(Playback::getPrice).sum();
+
+            response.add(new AdminContractResponse(contract_id, agent_id, customer_id, price));
         }
-    }*/
+        return Optional.of(response);
+    }
+
 }
