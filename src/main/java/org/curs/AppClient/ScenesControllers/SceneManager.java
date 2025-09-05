@@ -20,11 +20,19 @@ public class SceneManager {
             scenePaths.put("AgentScene", "/FXMLScenes/AgentScene.fxml");
     }
 
-    public static void showScene(String sceneName, Stage stage, Object controller) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(SceneManager.class.getResource(scenePaths.get(sceneName))));
-        loader.setController(controller);
-        Parent root = loader.load();
-        Scene scene = new  Scene(root);
+    public static void showScene(String sceneName, Stage stage, Object controller) {
+        stage.setScene(null);
+        Parent root = null;
+        FXMLLoader loader = null;
+        try {
+            loader = new FXMLLoader(Objects.requireNonNull(SceneManager.class.getResource(scenePaths.get(sceneName))));
+            loader.setController(controller);
+            root = loader.load();
+        } catch (IOException e) {
+            System.err.println("Error loading Scene" + e.getMessage());
+        }
+        logger.info("current controller: " + loader.getController().getClass().getName());
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
