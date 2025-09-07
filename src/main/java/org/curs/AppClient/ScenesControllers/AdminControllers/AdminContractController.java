@@ -20,7 +20,6 @@ public class AdminContractController extends AdminAbstractController {
         super.initialize();
         LOGGER.info("Initializing from AdminContract");
         AdminAddButton.setDisable(true);
-        TextLable.setText("Contracts");
     }
 
 }

@@ -7,6 +7,5 @@ public class AdminPlaybackController extends AdminAbstractController {
     @FXML
     public void initialize() {
         super.initialize();
-        TextLable.setText("Playbacks");
     }
 }

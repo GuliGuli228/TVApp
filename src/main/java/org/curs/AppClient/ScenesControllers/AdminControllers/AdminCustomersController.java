@@ -11,6 +11,5 @@ public class AdminCustomersController extends AdminAbstractController {
     public void initialize() {
         super.initialize();
         LOGGER.info("Initializing from AdminCustomersController");
-        TextLable.setText("Customers");
     }
 }

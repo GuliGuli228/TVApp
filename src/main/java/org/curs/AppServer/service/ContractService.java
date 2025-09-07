@@ -9,7 +9,6 @@ import org.curs.AppServer.repository.TelecastRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Time;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -19,8 +18,7 @@ public class ContractService {
     private ContractRepository contractRepository;
     @Autowired
     private PlaybackRepository playbackRepository;
-    @Autowired
-    private TelecastRepository telecastRepository;
+
 
     private static final Logger log = Logger.getLogger(ContractService.class.getName());
 

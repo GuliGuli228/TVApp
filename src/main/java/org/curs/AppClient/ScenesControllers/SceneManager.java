@@ -34,20 +34,18 @@ public class SceneManager {
     }
 
     public static void showScene(String sceneName, Stage stage, Object controller) {
-        stage.setScene(null);
-        Parent root = null;
-        FXMLLoader loader = null;
         try {
+            FXMLLoader loader;
             loader = new FXMLLoader(Objects.requireNonNull(SceneManager.class.getResource(scenePaths.get(sceneName))));
             loader.setController(controller);
-            root = loader.load();
+            logger.info("current controller: " + loader.getController().getClass().getName());
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+            stage.show();
         } catch (IOException e) {
-            System.err.println("Error loading Scene" + e.getMessage());
+            System.out.println("Ошибка зак грузки сцены");
+            e.printStackTrace();
         }
-        logger.info("current controller: " + loader.getController().getClass().getName());
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
     public static void switchScene(Scenes scene){
         String roleName = AppCache.getRole();

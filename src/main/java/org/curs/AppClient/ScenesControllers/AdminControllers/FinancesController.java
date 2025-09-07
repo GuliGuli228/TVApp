@@ -7,6 +7,5 @@ public class FinancesController extends AdminAbstractController {
     @FXML
     public void initialize() {
         super.initialize();
-        TextLable.setText("Finances");
     }
 }

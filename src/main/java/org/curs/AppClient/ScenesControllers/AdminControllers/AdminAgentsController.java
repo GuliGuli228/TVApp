@@ -10,6 +10,5 @@ public class AdminAgentsController extends AdminAbstractController {
     @FXML
     public void initialize() {
         super.initialize();
-        TextLable.setText("Agents");
     }
 }

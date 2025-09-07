@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -93,11 +92,6 @@
                   <Insets left="5.0" top="5.0" />
                </padding>
                 </Pane>
-            <Label fx:id="TextLable" text="Label">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
             </children>
             <opaqueInsets>
                 <Insets />
