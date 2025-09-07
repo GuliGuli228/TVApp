@@ -1,5 +1,6 @@
 package org.curs.AppClient.Utils;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -31,13 +32,13 @@ public class ApiUtil {
     }
 
     public static JsonObject getUserData(String apiPath, String login) throws IOException {
-        return ApiUtil.getData(apiPath + "?login=" + login);
+        return ApiUtil.getData(apiPath + "?login=" + login).getAsJsonObject();
     }
     public static JsonObject getAgentContractsById(String apiPath, Integer id) throws IOException{
-        return ApiUtil.getData(apiPath + "?id=" + id);
+        return ApiUtil.getData(apiPath + "?id=" + id).getAsJsonObject();
     }
 
-    public static JsonObject getData(String apiPath) throws IOException{
+    public static JsonElement getData(String apiPath) throws IOException{
         URL url = new URL(SERVER_URL + apiPath);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
@@ -57,6 +58,6 @@ public class ApiUtil {
         reader.close();
         connection.disconnect();
 
-        return new JsonParser().parse(sb.toString()).getAsJsonObject();
+        return new JsonParser().parse(sb.toString());
     }
 }

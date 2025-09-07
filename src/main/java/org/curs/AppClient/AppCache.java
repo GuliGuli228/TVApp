@@ -7,13 +7,14 @@ import com.google.gson.JsonParser;
 import org.curs.AppClient.Utils.ApiUtil;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AppCache {
     private static Integer userId;
     private static String userName;
     private static String role;
-    private static List<AdminContract> adminContracts;
+    private static List<AdminContract> adminContracts = new ArrayList<>();
 
     /*--- POJOs ---*/
     public record AdminContract(Integer contractId, Double price, Integer agentId, Integer customerId){}
@@ -22,7 +23,7 @@ public class AppCache {
     public static void loadCache(){
         try {
             if (role.equals("Admin")){
-                JsonObject contracts = ApiUtil.getData("/api/v1/adminContracts/all");
+                JsonArray contracts = ApiUtil.getData("/api/v1/contract/all").getAsJsonArray();
                 AppCache.contractsParsing(contracts);
             }
             if(role.equals("Agent")){
@@ -59,10 +60,9 @@ public class AppCache {
     /*--------------------*/
 
     /*---Methods---*/
-    private static void contractsParsing(JsonObject contracts){
-        JsonArray contractsArray = JsonParser.parseString(contracts.getAsString()).getAsJsonArray();
-        for (int i =0; i < contractsArray.size(); i++){
-            JsonObject currentContract = contractsArray.get(i).getAsJsonObject();
+    private static void contractsParsing(JsonArray contracts){
+        for (int i = 0; i < contracts.size(); i++){
+            JsonObject currentContract = contracts.get(i).getAsJsonObject();
             Integer contractId = currentContract.get("contractId").getAsInt();
             Double price = currentContract.get("price").getAsDouble();
             Integer agentId = currentContract.get("agentId").getAsInt();
