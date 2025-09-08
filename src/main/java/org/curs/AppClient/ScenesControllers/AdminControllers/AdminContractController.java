@@ -1,5 +1,11 @@
 package org.curs.AppClient.ScenesControllers.AdminControllers;
 
+import javafx.beans.Observable;
+import javafx.beans.property.ReadOnlyIntegerWrapper;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +14,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.Separator;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import lombok.SneakyThrows;
@@ -28,35 +36,31 @@ public class AdminContractController extends AdminAbstractController {
 
     private final static Logger LOGGER = Logger.getLogger(AdminContractController.class.getName());
 
+
     @FXML
-    private VBox ContentVbox;
+    private TableView<AppCache.AdminContract> TableBox;
+
     @FXML
     public void initialize() {
         super.initialize();
         LOGGER.info("Initializing from AdminContract");
         AdminAddButton.setDisable(true);
         List<AppCache.AdminContract> contracts = AppCache.getContracts();
-        if (contracts == null) {
-            System.out.println("no contracts");
-        }
-        for (AppCache.AdminContract contract : contracts) {
-            try {
-                String contractId = contract.contractId().toString();
-                String agentId = contract.agentId().toString();
-                String customerId = contract.customerId().toString();
-                String price = contract.price().toString();
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLScenes/AdminContractElement.fxml"));
-                HBox row = loader.load();
-                Node separator = new Separator(Orientation.HORIZONTAL);
-                AdminContractElementController controller = loader.getController();
-                controller.setData(contractId, agentId, customerId, price);
-                ContentVbox.getChildren().add(row);
-                ContentVbox.getChildren().add(separator);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        TableColumn<AppCache.AdminContract,Integer> tableColumnContractID = new TableColumn<>("ID Договора");
+        TableColumn<AppCache.AdminContract,Integer> tableColumnAgentID = new TableColumn<>("ID Агента");
+        TableColumn<AppCache.AdminContract,Integer> tableColumnCustomerID = new TableColumn<>("ID Заказчика");
+        TableColumn<AppCache.AdminContract,Double> tableColumnPrice= new TableColumn<>("Стоимость");
+
+
+        tableColumnContractID.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().contractId()));
+        tableColumnAgentID.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().agentId()));
+        tableColumnCustomerID.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().customerId()));
+        tableColumnPrice.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().price()));
+
+        TableBox.getColumns().addAll(tableColumnContractID,tableColumnAgentID,tableColumnCustomerID,tableColumnPrice);
+        ObservableList<AppCache.AdminContract> observableList = FXCollections.observableList(contracts);
+        TableBox.setItems(observableList);
     }
 
 }
