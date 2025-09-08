@@ -1,36 +1,18 @@
 package org.curs.AppClient.ScenesControllers.AdminControllers;
 
-import javafx.beans.Observable;
-import javafx.beans.property.ReadOnlyIntegerWrapper;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Orientation;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 
-import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import lombok.SneakyThrows;
 import org.curs.AppClient.AppCache;
-import org.curs.AppClient.ScenesControllers.*;
 import org.curs.AppClient.ScenesControllers.AbstractControllers.AdminAbstractController;
-import org.curs.AppClient.ScenesControllers.ComponentsControllers.AdminContractElementController;
 
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.Logger;
-
-import static org.curs.AppClient.AppCache.getContracts;
 
 public class AdminContractController extends AdminAbstractController {
 
