@@ -17,7 +17,7 @@ public class AppCache {
     private static List<AdminContract> adminContracts = new ArrayList<>();
 
     /*--- POJOs ---*/
-    public record AdminContract(Integer contractId, Double price, Integer agentId, Integer customerId){}
+    public record AdminContract(Integer contractId, Integer agentId, Integer customerId ,Double price){}
     /*-----------*/
 
     public static void loadCache(){
@@ -67,7 +67,7 @@ public class AppCache {
             Double price = currentContract.get("price").getAsDouble();
             Integer agentId = currentContract.get("agentId").getAsInt();
             Integer customerId = currentContract.get("customerId").getAsInt();
-            AppCache.adminContracts.add(new AdminContract(contractId, price, agentId, customerId));
+            AppCache.adminContracts.add(new AdminContract(contractId, agentId, customerId, price));
         }
     }
 
