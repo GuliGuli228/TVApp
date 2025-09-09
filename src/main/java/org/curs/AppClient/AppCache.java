@@ -5,7 +5,6 @@ import com.google.gson.*;
 import org.curs.AppClient.Utils.ApiUtil;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +14,7 @@ public class AppCache {
     private static String role;
     private static List<AdminContract> adminContracts = new ArrayList<>();
     private static List<AdminPlaybackResponse> adminPlaybackResponses = new ArrayList<>();
+    private static List<AdminAgentResponse> adminAgentResponses = new ArrayList<>();
 
     /*--- POJOs ---*/
     public record AdminContract(Integer contractId,
@@ -29,6 +29,12 @@ public class AppCache {
                                         String playbackTime,
                                         String playbackDate,
                                         Double price){}
+
+    public record AdminAgentResponse(Integer agentId,
+                                     String agentLogin,
+                                     Double percent,
+                                     Double income,
+                                     Integer amountOfContracts){};
     /*-----------*/
 
     public static void loadCache(){
@@ -36,8 +42,11 @@ public class AppCache {
             if (role.equals("Admin")){
                 JsonArray contracts = ApiUtil.getData("/api/v1/contract/all").getAsJsonArray();
                 JsonArray playbacks = ApiUtil.getData("/api/v1/playback/getAll").getAsJsonArray();
+                JsonArray agents = ApiUtil.getData("/api/v1/agent/getAll").getAsJsonArray();
+
                 adminContracts = AppCache.parser(AdminContract.class, contracts);
                 adminPlaybackResponses = AppCache.parser(AdminPlaybackResponse.class, playbacks);
+                adminAgentResponses =  AppCache.parser(AdminAgentResponse.class, agents);
 
             }
             if(role.equals("Agent")){
@@ -73,6 +82,9 @@ public class AppCache {
     }
     public static List<AdminPlaybackResponse> getAdminPlaybackResponses(){
         return AppCache.adminPlaybackResponses;
+    }
+    public static List<AdminAgentResponse> getAdminAgentResponses(){
+        return AppCache.adminAgentResponses;
     }
     /*--------------------*/
 
