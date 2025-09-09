@@ -1,12 +1,11 @@
 package org.curs.AppClient;
 
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import org.curs.AppClient.Utils.ApiUtil;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +35,10 @@ public class AppCache {
         try {
             if (role.equals("Admin")){
                 JsonArray contracts = ApiUtil.getData("/api/v1/contract/all").getAsJsonArray();
-                AppCache.contractsParsing(contracts);
+                JsonArray playbacks = ApiUtil.getData("/api/v1/playback/getAll").getAsJsonArray();
+                adminContracts = AppCache.parser(AdminContract.class, contracts);
+                adminPlaybackResponses = AppCache.parser(AdminPlaybackResponse.class, playbacks);
+
             }
             if(role.equals("Agent")){
                 JsonObject contracts = ApiUtil.getAgentContractsById("/api/v1/adminContracts/ByAgentId", userId);
@@ -69,18 +71,21 @@ public class AppCache {
     public static List<AdminContract> getContracts(){
         return  AppCache.adminContracts;
     }
+    public static List<AdminPlaybackResponse> getAdminPlaybackResponses(){
+        return AppCache.adminPlaybackResponses;
+    }
     /*--------------------*/
 
     /*---Methods---*/
-    private static void contractsParsing(JsonArray contracts){
-        for (int i = 0; i < contracts.size(); i++){
-            JsonObject currentContract = contracts.get(i).getAsJsonObject();
-            Integer contractId = currentContract.get("contractId").getAsInt();
-            Double price = currentContract.get("price").getAsDouble();
-            Integer agentId = currentContract.get("agentId").getAsInt();
-            Integer customerId = currentContract.get("customerId").getAsInt();
-            AppCache.adminContracts.add(new AdminContract(contractId, agentId, customerId, price));
+
+    private static <T> List<T> parser(Class<T> pojo, JsonArray data){
+        Gson gson = new Gson();
+        List<T> list = new ArrayList<>();
+        for (JsonElement elem : data) {
+            T obj = gson.fromJson(elem, pojo);
+            list.add(obj);
         }
+        return list;
     }
 
 }
