@@ -29,8 +29,6 @@ public abstract class AdminAbstractController {
     protected Button FinancesButton;
     @FXML
     protected Button TelecastButton;
-    @FXML
-    protected Label TextLable;
 
     @FXML
     protected void initialize() {
