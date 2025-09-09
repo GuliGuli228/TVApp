@@ -15,9 +15,21 @@ public class AppCache {
     private static String userName;
     private static String role;
     private static List<AdminContract> adminContracts = new ArrayList<>();
+    private static List<AdminPlaybackResponse> adminPlaybackResponses = new ArrayList<>();
 
     /*--- POJOs ---*/
-    public record AdminContract(Integer contractId, Integer agentId, Integer customerId ,Double price){}
+    public record AdminContract(Integer contractId,
+                                Integer agentId,
+                                Integer customerId,
+                                Double price){}
+
+    public record AdminPlaybackResponse(Integer playbackId,
+                                        Integer contractId,
+                                        Integer promoId,
+                                        String telecastName,
+                                        String playbackTime,
+                                        String playbackDate,
+                                        Double price){}
     /*-----------*/
 
     public static void loadCache(){
