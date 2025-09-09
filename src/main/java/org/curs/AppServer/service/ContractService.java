@@ -37,7 +37,15 @@ public class ContractService {
             Integer contract_id = contract.getId();
             Integer agent_id = contract.getAgent().getId();
             Integer customer_id = contract.getCustomer().getId();
-            Double price = playbacks.stream().flatMap(List::stream).mapToDouble(Playback::getPrice).sum();
+            // берем Optional<List<Playback>> -> Распаковываем в List<Playback> -> Вычисляем цену каждого Playback -> суммируем
+            Double price = playbacks.stream().flatMap(List::stream).peek(
+                    playback -> {
+                        long duration = playback.getPromo().getDuration().toMinutes();
+                        double minute_cost = playback.getTelecast().getMinuteCost();
+                        double log_price = duration * minute_cost;
+                        log.info("playbacks data: promo duration: " + duration + " minute cost: " + minute_cost + " price: " + log_price );
+                    }
+            ).mapToDouble(playback -> playback.getTelecast().getMinuteCost() * playback.getPromo().getDuration().toMinutes()).sum();
 
             response.add(new AdminContractResponse(contract_id, agent_id, customer_id, price));
         }

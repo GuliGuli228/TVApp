@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
+import org.curs.AppServer.model.Converters.DurationConverter;
 
 import java.sql.Time;
+import java.time.Duration;
 
 @Entity
 @Table(name = "promo")
@@ -18,8 +20,9 @@ public class Promo {
     @Column(name = "promo_id")
     private Integer id;
 
-    @Column(name = "duration")
-    private String duration;
+    @Column(name = "duration_in_seconds")
+    @Convert(converter = DurationConverter.class)
+    private Duration duration;
 
     @Column(name = "promo_url")
     private String promoUrl;

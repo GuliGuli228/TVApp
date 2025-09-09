@@ -82,3 +82,17 @@
     -fx-background-color: white;
     -fx-border-color: #d91e1e;
 }
+
+.table-view {
+    -fx-background-color: #2b2b2b;
+}
+
+.table-view .column-header {
+    -fx-font-family: Roboto;
+    -fx-font-size: 20px;
+}
+
+.table-view .table-cell {
+    -fx-font-family: Roboto;
+    -fx-font-size: 15px;
+}

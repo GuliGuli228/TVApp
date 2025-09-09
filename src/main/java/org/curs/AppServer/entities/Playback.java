@@ -25,9 +25,6 @@ public class Playback {
     @Column(name = "playback_date")
     private String playbackDate;
 
-    @Column(name = "price")
-    private Double price;
-
     @ManyToOne
     @JoinColumn(name = "contract_id", nullable = false)
     private Contract contract;
