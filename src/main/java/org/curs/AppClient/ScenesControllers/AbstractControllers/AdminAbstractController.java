@@ -3,7 +3,6 @@ package org.curs.AppClient.ScenesControllers.AbstractControllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import org.curs.AppClient.ScenesControllers.AdminControllers.AdminAgentsController;
 import org.curs.AppClient.ScenesControllers.SceneManager;
 import org.curs.AppClient.ScenesControllers.Scenes;
@@ -16,30 +15,28 @@ public abstract class AdminAbstractController {
     @FXML
     protected Button AdminAddButton;
     @FXML
-    protected Button ContractButton;
+    protected Button AdminContractButton;
     @FXML
-    protected Button PlaybackButton;
+    protected Button AdminPlaybackButton;
     @FXML
-    protected Button CustomersButton;
+    protected Button AdminCustomersButton;
     @FXML
-    protected Button PromosButton;
+    protected Button AdminPromosButton;
     @FXML
-    protected Button AgentsButton;
+    protected Button AdminAgentsButton;
     @FXML
-    protected Button FinancesButton;
-    @FXML
-    protected Button TelecastButton;
+    protected Button AdminTelecastButton;
+
 
     @FXML
     protected void initialize() {
         logger.info("Initializing from AbstractController");
-        ContractButton.setOnAction(this::SwitchToContract);
-        PlaybackButton.setOnAction(this::SwitchToPlayback);
-        CustomersButton.setOnAction(this::SwitchToCustomers);
-        PromosButton.setOnAction(this::SwitchToPromo);
-        AgentsButton.setOnAction(this::SwitchToAgents);
-        FinancesButton.setOnAction(this::SwitchToFinances);
-        TelecastButton.setOnAction(this::SwitchToTelecast);
+        AdminContractButton.setOnAction(this::SwitchToContract);
+        AdminPlaybackButton.setOnAction(this::SwitchToPlayback);
+        AdminCustomersButton.setOnAction(this::SwitchToCustomers);
+        AdminPromosButton.setOnAction(this::SwitchToPromo);
+        AdminAgentsButton.setOnAction(this::SwitchToAgents);
+        AdminTelecastButton.setOnAction(this::SwitchToTelecast);
     }
 
     protected   void SwitchToContract(ActionEvent event)  {
@@ -62,10 +59,7 @@ public abstract class AdminAbstractController {
         logger.info("Switching to Agents");
         SceneManager.switchScene(Scenes.AGENTS);
     }
-    protected void SwitchToFinances(ActionEvent event)  {
-        logger.info("Switching to Finances");
-        SceneManager.switchScene(Scenes.FINANCES);
-    }
+
     protected void SwitchToTelecast(ActionEvent event)  {
         logger.info("Switching to Telecast");
         SceneManager.switchScene(Scenes.TELECAST);

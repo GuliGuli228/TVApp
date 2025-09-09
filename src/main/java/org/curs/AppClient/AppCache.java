@@ -15,6 +15,8 @@ public class AppCache {
     private static List<AdminContract> adminContracts = new ArrayList<>();
     private static List<AdminPlaybackResponse> adminPlaybackResponses = new ArrayList<>();
     private static List<AdminAgentResponse> adminAgentResponses = new ArrayList<>();
+    private static List<AdminCustomersResponse> adminCustomersResponses = new ArrayList<>();
+
 
     /*--- POJOs ---*/
     public record AdminContract(Integer contractId,
@@ -35,6 +37,13 @@ public class AppCache {
                                      Double percent,
                                      Double income,
                                      Integer amountOfContracts){};
+
+    public record AdminCustomersResponse (Integer customerId,
+                                          String iban,
+                                          String phone,
+                                          String contactPerson,
+                                          Integer amountOfContracts,
+                                          Double priceOfContracts) {}
     /*-----------*/
 
     public static void loadCache(){
@@ -43,10 +52,12 @@ public class AppCache {
                 JsonArray contracts = ApiUtil.getData("/api/v1/contract/all").getAsJsonArray();
                 JsonArray playbacks = ApiUtil.getData("/api/v1/playback/getAll").getAsJsonArray();
                 JsonArray agents = ApiUtil.getData("/api/v1/agent/getAll").getAsJsonArray();
+                JsonArray customers = ApiUtil.getData("/api/v1/customer/getAll").getAsJsonArray();
 
                 adminContracts = AppCache.parser(AdminContract.class, contracts);
                 adminPlaybackResponses = AppCache.parser(AdminPlaybackResponse.class, playbacks);
                 adminAgentResponses =  AppCache.parser(AdminAgentResponse.class, agents);
+                adminCustomersResponses = AppCache.parser(AdminCustomersResponse.class, customers);
 
             }
             if(role.equals("Agent")){
@@ -85,6 +96,9 @@ public class AppCache {
     }
     public static List<AdminAgentResponse> getAdminAgentResponses(){
         return AppCache.adminAgentResponses;
+    }
+    public static List<AdminCustomersResponse> getAdminCustomersResponses(){
+        return AppCache.adminCustomersResponses;
     }
     /*--------------------*/
 

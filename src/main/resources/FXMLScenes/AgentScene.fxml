@@ -15,39 +15,39 @@
    <children>
       <HBox prefHeight="98.0" prefWidth="1280.0">
          <children>
-            <Pane prefHeight="100.0" prefWidth="100.0">
+            <Pane id="Pane" prefHeight="100.0" prefWidth="132.0" stylesheets="@../Styles.css">
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Images/Icon.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" visible="false" />
+                  <Button id="AccountButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" stylesheets="@../Styles.css" text="Button" />
                </children>
             </Pane>
             <FlowPane id="MenuBar" alignment="CENTER" hgap="35.0" minHeight="100.0" prefHeight="100.0" prefWidth="1181.0" stylesheets="@../Styles.css">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Договоры" textFill="WHITE">
+                  <Button fx:id="AgentContractButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Договоры" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="219.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Эфир показов" textFill="WHITE">
+                  <Button fx:id="AgentPlaybackButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="219.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Эфир показов" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Заказчики" textFill="WHITE">
+                  <Button fx:id="AgentCustomersButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Заказчики" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Ролики" textFill="WHITE">
+                  <Button fx:id="AgentPromoButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Ролики" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Передачи" textFill="WHITE">
+                  <Button fx:id="AgentTelecastButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Передачи" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>

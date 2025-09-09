@@ -15,49 +15,44 @@
     <children>
         <HBox prefHeight="98.0" prefWidth="1280.0">
             <children>
-                <Pane prefHeight="100.0" prefWidth="100.0" stylesheets="@../Styles.css">
+                <Pane id="Pane" prefHeight="100.0" prefWidth="124.0" stylesheets="@../Styles.css">
                     <children>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="100.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../Images/Icon.png" />
                             </image>
                         </ImageView>
-                        <Button id="AccountButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" stylesheets="@../Styles.css" text="Button" textFill="TRANSPARENT" visible="false" />
+                  <Button id="AccountButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" stylesheets="@../Styles.css" text="Button" />
                     </children>
                 </Pane>
-                <FlowPane id="MenuBar" alignment="CENTER" hgap="20.0" minHeight="100.0" prefHeight="100.0" prefWidth="1182.0" stylesheets="@../Styles.css">
+                <FlowPane id="MenuBar" alignment="CENTER" hgap="40.0" minHeight="100.0" prefHeight="100.0" prefWidth="1182.0" stylesheets="@../Styles.css">
                     <children>
-                        <Button fx:id="ContractButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="129.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Договоры" textFill="WHITE">
+                        <Button fx:id="AdminContractButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="129.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Договоры" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="20.0" />
                             </font>
                         </Button>
-                  <Button fx:id="PlaybackButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="169.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Эфир показов" textFill="WHITE">
+                  <Button fx:id="AdminPlaybackButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="169.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Эфир показов" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Button>
-                        <Button fx:id="CustomersButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="133.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Заказчики" textFill="WHITE">
+                        <Button fx:id="AdminCustomersButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="133.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Заказчики" textFill="WHITE">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Button>
-                        <Button fx:id="PromosButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="115.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Ролики" textFill="WHITE">
+                        <Button fx:id="AdminPromosButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="115.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Ролики" textFill="WHITE">
                             <font>
                                 <Font size="25.0" />
                             </font>
                         </Button>
-                  <Button fx:id="AgentsButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="119.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Агенты" textFill="WHITE">
+                  <Button fx:id="AdminAgentsButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="119.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Агенты" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button fx:id="FinancesButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="116.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Финансы" textFill="WHITE">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="TelecastButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="147.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Программы" textFill="WHITE">
+                  <Button fx:id="AdminTelecastButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="147.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Программы" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>

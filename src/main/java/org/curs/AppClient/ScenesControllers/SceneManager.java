@@ -55,7 +55,6 @@ public class SceneManager {
             case ADMIN_CUSTOMERS -> controller =new AdminCustomersController();
             case ADMIN_PLAYBACK -> controller =new AdminPlaybackController();
             case AGENTS -> controller =new AdminAgentsController();
-            case FINANCES -> controller =new FinancesController();
             case AGENT_CONTRACTS -> controller =new AgentContractController();
             case AGENT_PLAYBACK -> controller =new AgentPlaybackController();
             case AGENT_CUSTOMERS -> controller =new AgentCustomersController();
