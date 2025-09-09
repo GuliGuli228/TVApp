@@ -28,9 +28,9 @@ public class ContractService {
     }
     public Optional<List<AdminContractResponse>> getAllContractsForAdmin(){
         List<AdminContractResponse> response = new ArrayList<>();
-        Optional<List<Contract>> contracts = Optional.of(contractRepository.findAll());
+        List<Contract> contracts = contractRepository.findAll();
 
-        for (Contract contract : contracts.get()) {
+        for (Contract contract : contracts) {
 
             Optional<List<Playback>> playbacks = playbackRepository.findAllByContract_Id(contract.getId());
 
