@@ -20,10 +20,10 @@ public class Playback {
     private Integer id;
 
     @Column(name = "playback_time")
-    private String playbackTime;
+    private Time playbackTime;
 
     @Column(name = "playback_date")
-    private String playbackDate;
+    private Date playbackDate;
 
     @ManyToOne
     @JoinColumn(name = "contract_id", nullable = false)
