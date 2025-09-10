@@ -21,4 +21,9 @@ public class Agent {
 
     @Column(name = "agent_name")
     private String agentName;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", unique = true)
+    private User user;
+
 }

@@ -12,6 +12,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
+    @Column(name = "user_id")
     private Integer id;
 
     @Column(name = "user_role" )
@@ -23,4 +24,6 @@ public class User {
     @Column(name = "user_login")
     private String login;
 
+    @OneToOne(mappedBy = "user")
+    private Agent agent;
 }
