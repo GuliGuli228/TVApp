@@ -8,12 +8,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.curs.AppClient.AppCache;
-import org.curs.AppClient.ScenesControllers.AbstractControllers.AdminAbstractController;
+import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractController;
 
 import java.util.List;
 
 
-public class AdminAgentsController extends AdminAbstractController {
+public class AdminAgentsController extends AbstractController {
 
     @FXML
     private TableView<AppCache.AdminAgentResponse> TableBox;

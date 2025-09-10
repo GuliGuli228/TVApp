@@ -8,13 +8,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.curs.AppClient.AppCache;
-import org.curs.AppClient.ScenesControllers.AbstractControllers.AdminAbstractController;
+import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractController;
 
 
 import java.util.List;
 import java.util.logging.Logger;
 
-public class AdminContractController extends AdminAbstractController {
+public class AdminContractController extends AbstractController {
 
     private final static Logger LOGGER = Logger.getLogger(AdminContractController.class.getName());
 

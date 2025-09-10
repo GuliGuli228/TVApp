@@ -7,11 +7,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.curs.AppClient.AppCache;
-import org.curs.AppClient.ScenesControllers.AbstractControllers.AdminAbstractController;
+import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractController;
 
 import java.util.List;
 
-public class AdminPlaybackController extends AdminAbstractController {
+public class AdminPlaybackController extends AbstractController {
 
     @FXML
     private TableView<AppCache.AdminPlaybackResponse> TableBox;

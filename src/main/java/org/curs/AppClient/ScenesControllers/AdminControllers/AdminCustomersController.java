@@ -1,6 +1,5 @@
 package org.curs.AppClient.ScenesControllers.AdminControllers;
 
-import javafx.beans.Observable;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,12 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.curs.AppClient.AppCache;
-import org.curs.AppClient.ScenesControllers.AbstractControllers.AdminAbstractController;
+import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractController;
 
 import java.util.List;
 import java.util.logging.Logger;
 
-public class AdminCustomersController extends AdminAbstractController {
+public class AdminCustomersController extends AbstractController {
     private final static Logger LOGGER = Logger.getLogger(AdminContractController.class.getName());
 
     @FXML
