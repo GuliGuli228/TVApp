@@ -1,12 +1,44 @@
 package org.curs.AppClient.ScenesControllers.CommonControllers;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import org.curs.AppClient.AppCache;
 import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractController;
 
+import java.util.List;
+
 public class PromoController extends AbstractController {
+
+    @FXML
+    private TableView<AppCache.PromoResponse> TableBox;
+
     @FXML
     public void initialize() {
         super.initialize();
+        List<AppCache.PromoResponse> promoResponses =  AppCache.getPromoResponses();
+        if(!promoResponses.isEmpty()){
+            System.out.println(promoResponses);
+        }
+
+        TableColumn<AppCache.PromoResponse, Integer> tableColumnPromoId = new TableColumn<>("ID Ролика");
+        TableColumn<AppCache.PromoResponse, Integer> tableColumnCustomerId = new TableColumn<>("ID Заказчика");
+        TableColumn<AppCache.PromoResponse, String> tableColumnDuration = new TableColumn<>("Продолжительность");
+        TableColumn<AppCache.PromoResponse, String> tableColumnUrl= new TableColumn<>("URL Ролика");
+
+        tableColumnPromoId.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().promoId()));
+        tableColumnCustomerId.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().customerId()));
+        tableColumnDuration.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().duration()));
+        tableColumnUrl.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().promoUrl()));
+
+        tableColumnUrl.setMaxWidth(700);
+
+        TableBox.getColumns().addAll(tableColumnPromoId, tableColumnCustomerId, tableColumnDuration, tableColumnUrl);
+        ObservableList<AppCache.PromoResponse> responses = FXCollections.observableList(promoResponses);
+        TableBox.setItems(responses);
     }
 
 }

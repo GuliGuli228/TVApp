@@ -16,6 +16,8 @@ public class AppCache {
     private static List<AdminPlaybackResponse> adminPlaybackResponses = new ArrayList<>();
     private static List<AdminAgentResponse> adminAgentResponses = new ArrayList<>();
     private static List<AdminCustomersResponse> adminCustomersResponses = new ArrayList<>();
+    private static List<PromoResponse> promoResponses = new ArrayList<>();
+    private static List<TelecastResponse> telecastResponses = new ArrayList<>();
 
 
     /*--- POJOs ---*/
@@ -44,6 +46,15 @@ public class AppCache {
                                           String contactPerson,
                                           Integer amountOfContracts,
                                           Double priceOfContracts) {}
+    public record PromoResponse(Integer promoId,
+                                Integer customerId,
+                                String duration,
+                                String promoUrl){}
+
+    public record TelecastResponse(Integer id,
+                                   Double rating,
+                                   Double minuteCost,
+                                   String telecastName){}
     /*-----------*/
 
     public static void loadCache(){
@@ -53,11 +64,15 @@ public class AppCache {
                 JsonArray playbacks = ApiUtil.getData("/api/v1/playback/getAll").getAsJsonArray();
                 JsonArray agents = ApiUtil.getData("/api/v1/agent/getAll").getAsJsonArray();
                 JsonArray customers = ApiUtil.getData("/api/v1/customer/getAll").getAsJsonArray();
+                JsonArray promos = ApiUtil.getData("/api/v1/promo/getAll").getAsJsonArray();
+                JsonArray telecasts = ApiUtil.getData("/api/v1/telecast/getAll").getAsJsonArray();
 
                 adminContracts = AppCache.parser(AdminContract.class, contracts);
                 adminPlaybackResponses = AppCache.parser(AdminPlaybackResponse.class, playbacks);
                 adminAgentResponses =  AppCache.parser(AdminAgentResponse.class, agents);
                 adminCustomersResponses = AppCache.parser(AdminCustomersResponse.class, customers);
+                promoResponses = AppCache.parser(PromoResponse.class, promos);
+                telecastResponses = AppCache.parser(TelecastResponse.class, telecasts);
 
             }
             if(role.equals("Agent")){
@@ -99,6 +114,12 @@ public class AppCache {
     }
     public static List<AdminCustomersResponse> getAdminCustomersResponses(){
         return AppCache.adminCustomersResponses;
+    }
+    public static List<PromoResponse> getPromoResponses(){
+        return AppCache.promoResponses;
+    }
+    public static List<TelecastResponse> getTelecastResponses(){
+        return AppCache.telecastResponses;
     }
     /*--------------------*/
 
