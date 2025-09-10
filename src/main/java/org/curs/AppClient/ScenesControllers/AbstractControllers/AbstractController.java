@@ -102,12 +102,12 @@ public class AbstractController {
 
     /*---Common Scenes---*/
     protected void SwitchToPromo(ActionEvent event)  {
-        logger.info("Switching to Telecast");
-        SceneManager.switchScene(Scenes.TELECAST);
-    }
-    protected void SwitchToTelecast(ActionEvent event)  {
         logger.info("Switching to Promo");
         SceneManager.switchScene(Scenes.PROMO);
+    }
+    protected void SwitchToTelecast(ActionEvent event)  {
+        logger.info("Switching to Telecast");
+        SceneManager.switchScene(Scenes.TELECAST);
     }
     /*------------------*/
 
