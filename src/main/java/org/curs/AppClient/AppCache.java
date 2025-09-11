@@ -7,6 +7,7 @@ import org.curs.AppClient.Utils.ApiUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class AppCache {
     private static Integer userId;
@@ -60,12 +61,12 @@ public class AppCache {
     public static void loadCache(){
         try {
             if (role.equals("Admin")){
-                JsonArray contracts = ApiUtil.getData("/api/v1/contract/all").getAsJsonArray();
-                JsonArray playbacks = ApiUtil.getData("/api/v1/playback/getAll").getAsJsonArray();
-                JsonArray agents = ApiUtil.getData("/api/v1/agent/getAll").getAsJsonArray();
-                JsonArray customers = ApiUtil.getData("/api/v1/customer/getAll").getAsJsonArray();
-                JsonArray promos = ApiUtil.getData("/api/v1/promo/getAll").getAsJsonArray();
-                JsonArray telecasts = ApiUtil.getData("/api/v1/telecast/getAll").getAsJsonArray();
+                JsonArray contracts = ApiUtil.nonParametricRequest("/api/v1/contract/all").getAsJsonArray();
+                JsonArray playbacks = ApiUtil.nonParametricRequest("/api/v1/playback/getAll").getAsJsonArray();
+                JsonArray agents = ApiUtil.nonParametricRequest("/api/v1/agent/getAll").getAsJsonArray();
+                JsonArray customers = ApiUtil.nonParametricRequest("/api/v1/customer/getAll").getAsJsonArray();
+                JsonArray promos = ApiUtil.nonParametricRequest("/api/v1/promo/getAll").getAsJsonArray();
+                JsonArray telecasts = ApiUtil.nonParametricRequest("/api/v1/telecast/getAll").getAsJsonArray();
 
                 adminContracts = AppCache.parser(AdminContract.class, contracts);
                 adminPlaybackResponses = AppCache.parser(AdminPlaybackResponse.class, playbacks);
@@ -76,7 +77,7 @@ public class AppCache {
 
             }
             if(role.equals("Agent")){
-                JsonObject contracts = ApiUtil.getAgentContractsById("/api/v1/adminContracts/ByAgentId", userId);
+                JsonObject contracts = ApiUtil.parametricRequest("/api/v1/contracts/byAgentId", ApiUtil.RequestMethod.GET, Map.of("id", userId.toString())).getAsJsonObject();
             }
         } catch (IOException e) {
             e.getStackTrace();

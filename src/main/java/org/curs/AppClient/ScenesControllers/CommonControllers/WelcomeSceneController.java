@@ -16,6 +16,10 @@ import org.curs.AppClient.Utils.ApiUtil;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.util.Map;
+import java.util.Objects;
+
+import static org.curs.AppClient.Utils.ApiUtil.RequestMethod.GET;
 
 public class WelcomeSceneController {
 
@@ -42,13 +46,14 @@ public class WelcomeSceneController {
         connection = ApiUtil.fetchApi("/api/v1/user/login?login="+login+"&password="+password, ApiUtil.RequestMethod.POST,null);
 
         if(connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-            JsonObject user = ApiUtil.getUserData("/api/v1/user/login", login);
+            //JsonObject user = ApiUtil.getUserData("/api/v1/user/login", login);
+            JsonObject user = Objects.requireNonNull(ApiUtil.parametricRequest("/api/v1/user/login", GET, Map.of("login", login))).getAsJsonObject();
             System.out.println(user);
 
             String role = user.get("role").getAsString();
             AppCache.setRole(role);
             AppCache.setUserId(user.get("id").getAsInt());
-            AppCache.setUserName(user.get("login").getAsString());
+            AppCache.setUserName(user.get("name").getAsString());
 
             AppCache.loadCache();
 

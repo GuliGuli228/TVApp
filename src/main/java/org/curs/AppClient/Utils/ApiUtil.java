@@ -7,11 +7,13 @@ import com.google.gson.JsonParser;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
 public class ApiUtil {
     private static final String SERVER_URL = "http://localhost:8085";
     public  enum RequestMethod{POST , GET, PUT, DELETE};
 
+    //TODO Убрать все методы кроме parametricRequest
     public static HttpURLConnection fetchApi(String apiPath, RequestMethod requestMethod, JsonObject jsonObject) throws IOException {
         URL url = new URL(SERVER_URL + apiPath); // Url сервера
         HttpURLConnection connection = (HttpURLConnection) url.openConnection(); // Открываю подключение по Url сервера
@@ -32,20 +34,18 @@ public class ApiUtil {
     }
 
     public static JsonObject getUserData(String apiPath, String login) throws IOException {
-        return ApiUtil.getData(apiPath + "?login=" + login).getAsJsonObject();
+        return ApiUtil.nonParametricRequest(apiPath + "?login=" + login).getAsJsonObject();
     }
     public static JsonObject getAgentContractsById(String apiPath, Integer id) throws IOException{
-        return ApiUtil.getData(apiPath + "?id=" + id).getAsJsonObject();
+        return ApiUtil.nonParametricRequest(apiPath + "?id=" + id).getAsJsonObject();
     }
 
-    public static JsonElement getData(String apiPath) throws IOException{
+    public static JsonElement nonParametricRequest(String apiPath) throws IOException{
         URL url = new URL(SERVER_URL + apiPath);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept", "application/json");
         connection.setDoOutput(true);
-
-
         InputStream input = connection.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"));
 
@@ -59,5 +59,41 @@ public class ApiUtil {
         connection.disconnect();
 
         return new JsonParser().parse(sb.toString());
+    }
+
+    public static JsonElement parametricRequest(String apiPath,
+                                                RequestMethod requestMethod,
+                                                Map<String, String> parameters) throws IOException{
+
+        StringBuilder path = new StringBuilder();
+        for (Map.Entry<String, String> entry : parameters.entrySet()){
+            path.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+        }
+        if (!path.isEmpty()) {
+            path.deleteCharAt(path.length() - 1); // убираем последний &
+        }
+
+        URL url = new URL(SERVER_URL+ apiPath + "?" + path);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod(requestMethod.name());
+        connection.setRequestProperty("Accept", "application/json");
+
+        if (requestMethod == RequestMethod.GET) {
+            InputStream input = connection.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"));
+
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null){
+                sb.append(line);
+            }
+            input.close();
+            reader.close();
+            connection.disconnect();
+
+            return new JsonParser().parse(sb.toString());
+        }
+        //TODO: Затычка для метода, в будущем реализуется;
+        return  null;
     }
 }
