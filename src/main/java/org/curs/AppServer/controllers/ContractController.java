@@ -21,7 +21,7 @@ public class ContractController {
     @Autowired
     private ContractService contractService;
 
-    @GetMapping("/ByAgentId")
+    @GetMapping("/byAgentId")
     public ResponseEntity<List<Contract>> getByAgentId(@RequestParam Integer agentId){
         Optional<List<Contract>> contracts = contractService.getAllContractsByAgentId(agentId);
         if (contracts.isPresent()) return new ResponseEntity<>(contracts.get(), HttpStatus.OK);

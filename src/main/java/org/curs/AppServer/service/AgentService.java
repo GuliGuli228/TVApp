@@ -53,4 +53,9 @@ public class AgentService {
         }
         return Optional.of(adminAgentResponses);
     }
+
+    public Optional<Agent> findAgentByUserId(Integer userId){
+        log.info("getting agent by user id: " + userId);
+        return agentRepository.findById(userId);
+    }
 }

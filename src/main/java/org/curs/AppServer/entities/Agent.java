@@ -1,5 +1,6 @@
 package org.curs.AppServer.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class Agent {
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", unique = true)
+    @JsonIgnore
     private User user;
 
 }
