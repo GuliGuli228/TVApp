@@ -11,16 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/v1/telecast")
 public class TelecastController {
+
+    private static final Logger log = Logger.getLogger(TelecastService.class.getName());
+
 
     @Autowired
     private TelecastService  telecastService;
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Telecast>> getAllTelecasts(){
+        log.info("getting all telecasts");
         Optional<List<Telecast>> telecasts = telecastService.getAllTelecasts();
         if(telecasts.isPresent()) return new  ResponseEntity<>(telecasts.get(), HttpStatus.OK);
         return new  ResponseEntity<>(HttpStatus.NOT_FOUND);
