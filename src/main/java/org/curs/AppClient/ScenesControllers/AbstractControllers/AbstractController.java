@@ -50,16 +50,18 @@ public class AbstractController {
     public void initialize() {
         if(Objects.equals(AppCache.getRole(), "Admin")) {
             AdminContractButton.setOnAction(this::SwitchToAdminContract);
-            AdminPlaybackButton.setOnAction(this::SwitchToAdminPlayback);
             AdminCustomersButton.setOnAction(this::SwitchToAdminCustomers);
             AdminAgentsButton.setOnAction(this::SwitchToAdminAgents);
+
+            AdminPlaybackButton.setOnAction(this::SwitchToPlayback);
             AdminTelecastButton.setOnAction(this::SwitchToTelecast);
             AdminPromosButton.setOnAction(this::SwitchToPromo);
         }
         if(Objects.equals(AppCache.getRole(), "Agent")) {
             AgentContractButton.setOnAction(this::SwitchToAgentContract);
-            AgentPlaybackButton.setOnAction(this::SwitchToAgentPlayback);
             AgentCustomersButton.setOnAction(this::SwitchToAgentCustomers);
+
+            AgentPlaybackButton.setOnAction(this::SwitchToPlayback);
             AgentPromoButton.setOnAction(this::SwitchToPromo);
             AgentTelecastButton.setOnAction(this::SwitchToTelecast);
         }
@@ -68,10 +70,6 @@ public class AbstractController {
     protected   void SwitchToAdminContract(ActionEvent event)  {
         logger.info("switching to Admin Contract");
         SceneManager.switchScene(Scenes.ADMIN_CONTRACTS);
-    }
-    protected void SwitchToAdminPlayback(ActionEvent event)  {
-        logger.info("Switching to Admin Playback");
-        SceneManager.switchScene(Scenes.ADMIN_PLAYBACK);
     }
     protected void SwitchToAdminCustomers(ActionEvent event)  {
         logger.info("Switching to Admin Customers");
@@ -89,10 +87,6 @@ public class AbstractController {
         logger.info("switching to Agent ontract");
         SceneManager.switchScene(Scenes.AGENT_CONTRACTS);
     }
-    protected void SwitchToAgentPlayback(ActionEvent event)  {
-        logger.info("Switching to Agent Playback");
-        SceneManager.switchScene(Scenes.AGENT_PLAYBACK);
-    }
     protected void SwitchToAgentCustomers(ActionEvent event)  {
         logger.info("Switching to Agent Customers");
         SceneManager.switchScene(Scenes.AGENT_CUSTOMERS);
@@ -109,6 +103,11 @@ public class AbstractController {
         logger.info("Switching to Telecast");
         SceneManager.switchScene(Scenes.TELECAST);
     }
+    protected void SwitchToPlayback(ActionEvent event)  {
+        logger.info("Switching to Agent Playback");
+        SceneManager.switchScene(Scenes.PLAYBACK);
+    }
+
     /*------------------*/
 
 }
