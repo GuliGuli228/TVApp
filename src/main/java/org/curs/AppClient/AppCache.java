@@ -14,26 +14,21 @@ public class AppCache {
     private static String userName;
     private static String role;
     private static List<AdminContract> adminContracts = new ArrayList<>();
-    private static List<AdminPlaybackResponse> adminPlaybackResponses = new ArrayList<>();
+    private static List<PlaybackResponse> PlaybackResponses = new ArrayList<>();
     private static List<AdminAgentResponse> adminAgentResponses = new ArrayList<>();
-    private static List<AdminCustomersResponse> adminCustomersResponses = new ArrayList<>();
+    private static List<CustomersResponse> customersResponses = new ArrayList<>();
     private static List<PromoResponse> promoResponses = new ArrayList<>();
     private static List<TelecastResponse> telecastResponses = new ArrayList<>();
+    private static List<AgentContractResponse> agentContractResponses = new ArrayList<>();
 
 
     /*--- POJOs ---*/
+    /*&&--- Admin POJOs ---&&*/
     public record AdminContract(Integer contractId,
                                 Integer agentId,
                                 Integer customerId,
                                 Double price){}
 
-    public record AdminPlaybackResponse(Integer playbackId,
-                                        Integer contractId,
-                                        Integer promoId,
-                                        String telecastName,
-                                        String playbackTime,
-                                        String playbackDate,
-                                        Double price){}
 
     public record AdminAgentResponse(Integer agentId,
                                      String agentLogin,
@@ -41,12 +36,18 @@ public class AppCache {
                                      Double income,
                                      Integer amountOfContracts){};
 
-    public record AdminCustomersResponse (Integer customerId,
-                                          String iban,
-                                          String phone,
-                                          String contactPerson,
-                                          Integer amountOfContracts,
-                                          Double priceOfContracts) {}
+    /*&&-------------------&&*/
+
+
+    /*&&--- Agent POJOs ---&&*/
+    public record AgentContractResponse (Integer contractId,
+                                         Integer customerId,
+                                         Double price){}
+
+    /*&&-------------------&&*/
+
+
+    /*&&--- Common POJOs ---&&*/
     public record PromoResponse(Integer promoId,
                                 Integer customerId,
                                 String duration,
@@ -56,31 +57,67 @@ public class AppCache {
                                    Double rating,
                                    Double minuteCost,
                                    String telecastName){}
+
+    public record PlaybackResponse(Integer playbackId,
+                                   Integer contractId,
+                                   Integer promoId,
+                                   String telecastName,
+                                   String playbackTime,
+                                   String playbackDate,
+                                   Double price){}
+
+    public record CustomersResponse (Integer customerId,
+                                     String iban,
+                                     String phone,
+                                     String contactPerson,
+                                     Integer amountOfContracts,
+                                     Double priceOfContracts) {}
+    /*&&--------------------&&*/
     /*-----------*/
 
     public static void loadCache(){
         try {
             if (role.equals("Admin")){
                 JsonArray contracts = ApiUtil.nonParametricRequest("/api/v1/contract/all").getAsJsonArray();
-                JsonArray playbacks = ApiUtil.nonParametricRequest("/api/v1/playback/getAll").getAsJsonArray();
                 JsonArray agents = ApiUtil.nonParametricRequest("/api/v1/agent/getAll").getAsJsonArray();
                 JsonArray customers = ApiUtil.nonParametricRequest("/api/v1/customer/getAll").getAsJsonArray();
-                JsonArray promos = ApiUtil.nonParametricRequest("/api/v1/promo/getAll").getAsJsonArray();
-                JsonArray telecasts = ApiUtil.nonParametricRequest("/api/v1/telecast/getAll").getAsJsonArray();
 
                 adminContracts = AppCache.parser(AdminContract.class, contracts);
-                adminPlaybackResponses = AppCache.parser(AdminPlaybackResponse.class, playbacks);
                 adminAgentResponses =  AppCache.parser(AdminAgentResponse.class, agents);
-                adminCustomersResponses = AppCache.parser(AdminCustomersResponse.class, customers);
-                promoResponses = AppCache.parser(PromoResponse.class, promos);
-                telecastResponses = AppCache.parser(TelecastResponse.class, telecasts);
-
+                customersResponses = AppCache.parser(CustomersResponse.class, customers);
             }
             if(role.equals("Agent")){
-                JsonObject contracts = ApiUtil.parametricRequest("/api/v1/contracts/byAgentId", ApiUtil.RequestMethod.GET, Map.of("id", userId.toString())).getAsJsonObject();
+                Integer agentId = ApiUtil.parametricRequest(
+                        "/api/v1/agent/findByUserId",
+                        ApiUtil.RequestMethod.GET,
+                        Map.of("userId", userId.toString())).getAsJsonObject().get("id").getAsInt();
+
+                JsonArray contracts = ApiUtil.parametricRequest(
+                        "/api/v1/contract/findByAgentId",
+                        ApiUtil.RequestMethod.GET,
+                        Map.of("agentId", agentId.toString())).getAsJsonArray();
+
+                JsonArray customers = ApiUtil.parametricRequest(
+                        "/api/v1/customer/getAllForAgent",
+                        ApiUtil.RequestMethod.GET,
+                        Map.of("agentId", agentId.toString())).getAsJsonArray();
+
+                agentContractResponses = AppCache.parser(AgentContractResponse.class, contracts);
+                customersResponses = AppCache.parser(CustomersResponse.class, customers);
+
             }
-        } catch (IOException e) {
-            e.getStackTrace();
+
+            JsonArray promos = ApiUtil.nonParametricRequest("/api/v1/promo/getAll").getAsJsonArray();
+            JsonArray telecasts = ApiUtil.nonParametricRequest("/api/v1/telecast/getAll").getAsJsonArray();
+            JsonArray playbacks = ApiUtil.nonParametricRequest("/api/v1/playback/getAll").getAsJsonArray();
+
+
+            promoResponses = AppCache.parser(PromoResponse.class, promos);
+            telecastResponses = AppCache.parser(TelecastResponse.class, telecasts);
+            PlaybackResponses = AppCache.parser(PlaybackResponse.class, playbacks);
+
+        } catch (RuntimeException | IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -104,23 +141,26 @@ public class AppCache {
     public static void setRole(String role) {
         AppCache.role = role;
     }
-    public static List<AdminContract> getContracts(){
+    public static List<AdminContract> getAdminContracts(){
         return  AppCache.adminContracts;
     }
-    public static List<AdminPlaybackResponse> getAdminPlaybackResponses(){
-        return AppCache.adminPlaybackResponses;
+    public static List<PlaybackResponse> getPlaybackResponses(){
+        return AppCache.PlaybackResponses;
     }
     public static List<AdminAgentResponse> getAdminAgentResponses(){
         return AppCache.adminAgentResponses;
     }
-    public static List<AdminCustomersResponse> getAdminCustomersResponses(){
-        return AppCache.adminCustomersResponses;
+    public static List<CustomersResponse> getCustomersResponses(){
+        return AppCache.customersResponses;
     }
     public static List<PromoResponse> getPromoResponses(){
         return AppCache.promoResponses;
     }
     public static List<TelecastResponse> getTelecastResponses(){
         return AppCache.telecastResponses;
+    }
+    public static List<AgentContractResponse> getAgentContractResponses(){
+        return AppCache.agentContractResponses;
     }
     /*--------------------*/
 

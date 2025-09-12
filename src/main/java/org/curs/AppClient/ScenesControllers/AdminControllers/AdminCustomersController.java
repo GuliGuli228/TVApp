@@ -16,19 +16,19 @@ public class AdminCustomersController extends AbstractController {
     private final static Logger LOGGER = Logger.getLogger(AdminContractController.class.getName());
 
     @FXML
-    private TableView<AppCache.AdminCustomersResponse> TableBox;
+    private TableView<AppCache.CustomersResponse> TableBox;
 
     @FXML
     public void initialize() {
         super.initialize();
-        List<AppCache.AdminCustomersResponse> customersResponses = AppCache.getAdminCustomersResponses();
+        List<AppCache.CustomersResponse> customersResponses = AppCache.getCustomersResponses();
 
-        TableColumn<AppCache.AdminCustomersResponse, Integer> tableColumnCustomerId = new TableColumn<>("ID Заказчика");
-        TableColumn<AppCache.AdminCustomersResponse, String> tableColumnCustomerIban = new TableColumn<>("Банковские реквизиты");
-        TableColumn<AppCache.AdminCustomersResponse, String> tableColumnCustomerPhone = new TableColumn<>("Номер телефона");
-        TableColumn<AppCache.AdminCustomersResponse, String> tableColumnCustomerContactPerson = new TableColumn<>("Контактное лицо");
-        TableColumn<AppCache.AdminCustomersResponse, Integer> tableColumnCustomerAmountOfContracts = new TableColumn<>("Количество контрактов");
-        TableColumn<AppCache.AdminCustomersResponse, Double> tableColumnCustomerPriceOfContracts = new TableColumn<>("Стоимость всех контрактов");
+        TableColumn<AppCache.CustomersResponse, Integer> tableColumnCustomerId = new TableColumn<>("ID Заказчика");
+        TableColumn<AppCache.CustomersResponse, String> tableColumnCustomerIban = new TableColumn<>("Банковские реквизиты");
+        TableColumn<AppCache.CustomersResponse, String> tableColumnCustomerPhone = new TableColumn<>("Номер телефона");
+        TableColumn<AppCache.CustomersResponse, String> tableColumnCustomerContactPerson = new TableColumn<>("Контактное лицо");
+        TableColumn<AppCache.CustomersResponse, Integer> tableColumnCustomerAmountOfContracts = new TableColumn<>("Количество контрактов");
+        TableColumn<AppCache.CustomersResponse, Double> tableColumnCustomerPriceOfContracts = new TableColumn<>("Стоимость всех контрактов");
 
         tableColumnCustomerId.setCellValueFactory(cell-> new ReadOnlyObjectWrapper<>(cell.getValue().customerId()));
         tableColumnCustomerIban.setCellValueFactory(cell-> new ReadOnlyObjectWrapper<>(cell.getValue().iban()));
@@ -38,7 +38,7 @@ public class AdminCustomersController extends AbstractController {
         tableColumnCustomerPriceOfContracts.setCellValueFactory(cell-> new ReadOnlyObjectWrapper<>(cell.getValue().priceOfContracts()));
 
         TableBox.getColumns().addAll(tableColumnCustomerId,tableColumnCustomerIban, tableColumnCustomerPhone,tableColumnCustomerContactPerson,tableColumnCustomerAmountOfContracts,tableColumnCustomerPriceOfContracts );
-        ObservableList<AppCache.AdminCustomersResponse> list = FXCollections.observableArrayList(customersResponses);
+        ObservableList<AppCache.CustomersResponse> list = FXCollections.observableArrayList(customersResponses);
         TableBox.setItems(list);
     }
 }
