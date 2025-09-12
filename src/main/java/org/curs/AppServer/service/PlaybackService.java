@@ -1,9 +1,8 @@
 package org.curs.AppServer.service;
 
 import org.curs.AppServer.entities.Playback;
-import org.curs.AppServer.model.DTO.AdminPlaybackResponse;
+import org.curs.AppServer.model.DTO.CommonResponses.PlaybackResponse;
 import org.curs.AppServer.repository.PlaybackRepository;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +18,11 @@ public class PlaybackService {
     @Autowired
     private PlaybackRepository playbackRepository;
 
-    public Optional<List<AdminPlaybackResponse>> getAllPlaybacksForAdmin(){
+    public Optional<List<PlaybackResponse>> getAllPlaybacksForAdmin(){
         log.info("getting all playbacks");
 
         List<Playback> playbacks = playbackRepository.findAll();
-        List<AdminPlaybackResponse> adminPlaybackResponses = new ArrayList<>();
+        List<PlaybackResponse> playbackRespons = new ArrayList<>();
 
         for (Playback playback : playbacks) {
 
@@ -35,8 +34,8 @@ public class PlaybackService {
             String playbackDate = playback.getPlaybackDate().toString();
             Double price = playback.getPromo().getDuration().toMinutes() * playback.getTelecast().getMinuteCost();
 
-            adminPlaybackResponses.add(new AdminPlaybackResponse(playbackId, contractId, promoId, telecastName, playbackTime, playbackDate, price));
+            playbackRespons.add(new PlaybackResponse(playbackId, contractId, promoId, telecastName, playbackTime, playbackDate, price));
         }
-        return Optional.of(adminPlaybackResponses);
+        return Optional.of(playbackRespons);
     }
 }
