@@ -1,7 +1,7 @@
 package org.curs.AppServer.service;
 
 import org.curs.AppServer.entities.Promo;
-import org.curs.AppServer.model.DTO.PromoResponse;
+import org.curs.AppServer.model.DTO.CommonResponses.PromoResponse;
 import org.curs.AppServer.repository.PromoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
