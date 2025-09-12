@@ -2,10 +2,10 @@ package org.curs.AppServer.service;
 
 import org.curs.AppServer.entities.Contract;
 import org.curs.AppServer.entities.Playback;
-import org.curs.AppServer.model.DTO.AdminContractResponse;
+import org.curs.AppServer.model.DTO.AdminResponses.AdminContractResponse;
+import org.curs.AppServer.model.DTO.AgentResponses.AgentContractResponse;
 import org.curs.AppServer.repository.ContractRepository;
 import org.curs.AppServer.repository.PlaybackRepository;
-import org.curs.AppServer.repository.TelecastRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +22,7 @@ public class ContractService {
 
     private static final Logger log = Logger.getLogger(ContractService.class.getName());
 
-    public Optional<List<Contract>> getAllContractsByAgentId(Integer id) {
-        log.info("getting all contracts by agent id: " + id);
-        return contractRepository.findAllByAgentId(id);
-    }
+
     public Optional<List<AdminContractResponse>> getAllContractsForAdmin(){
         List<AdminContractResponse> response = new ArrayList<>();
         List<Contract> contracts = contractRepository.findAll();
@@ -48,6 +45,21 @@ public class ContractService {
             ).mapToDouble(playback -> playback.getTelecast().getMinuteCost() * playback.getPromo().getDuration().toMinutes()).sum();
 
             response.add(new AdminContractResponse(contract_id, agent_id, customer_id, price));
+        }
+        return Optional.of(response);
+    }
+
+    public Optional<List<AgentContractResponse>> getAllContractsForAgent(Integer id) {
+        Optional<List<Contract>> contracts = contractRepository.findAllByAgentId(id);
+
+        List<AgentContractResponse> response = new ArrayList<>();
+        for (Contract contract : contracts.get()){
+            Optional<List<Playback>> playbacks = playbackRepository.findAllByContract_Id(contract.getId());
+
+            Integer contract_id = contract.getId();
+            Integer customer_id = contract.getCustomer().getId();
+            Double price = playbacks.stream().flatMap(List::stream).mapToDouble(playback -> playback.getTelecast().getMinuteCost() * playback.getPromo().getDuration().toMinutes()).sum();
+            response.add(new AgentContractResponse(contract_id, customer_id, price));
         }
         return Optional.of(response);
     }
