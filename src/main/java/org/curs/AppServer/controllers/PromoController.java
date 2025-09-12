@@ -1,7 +1,6 @@
 package org.curs.AppServer.controllers;
 
-import org.curs.AppServer.entities.Promo;
-import org.curs.AppServer.model.DTO.PromoResponse;
+import org.curs.AppServer.model.DTO.CommonResponses.PromoResponse;
 import org.curs.AppServer.service.PromoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
