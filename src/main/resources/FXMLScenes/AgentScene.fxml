@@ -2,7 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.FlowPane?>
@@ -15,7 +15,7 @@
    <children>
       <HBox prefHeight="98.0" prefWidth="1280.0">
          <children>
-            <Pane id="Pane" prefHeight="100.0" prefWidth="132.0" stylesheets="@../Styles.css">
+            <Pane id="Pane" prefHeight="100.0" prefWidth="120.0" stylesheets="@../Styles.css">
                <children>
                   <ImageView fitHeight="100.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -25,7 +25,7 @@
                   <Button id="AccountButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" stylesheets="@../Styles.css" text="Button" />
                </children>
             </Pane>
-            <FlowPane id="MenuBar" alignment="CENTER" hgap="35.0" minHeight="100.0" prefHeight="100.0" prefWidth="1181.0" stylesheets="@../Styles.css">
+            <FlowPane id="MenuBar" alignment="CENTER" hgap="33.0" minHeight="100.0" prefHeight="100.0" prefWidth="1181.0" stylesheets="@../Styles.css">
                <children>
                   <Button fx:id="AgentContractButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" styleClass="AgentMenuButtons" stylesheets="@../Styles.css" text="Договоры" textFill="WHITE">
                      <font>
@@ -90,10 +90,9 @@
             <Insets bottom="10.0" top="10.0" />
          </padding>
       </HBox>
-      <ScrollPane prefHeight="614.0" prefWidth="1280.0">
-         <content>
-            <VBox prefHeight="524.0" prefWidth="1276.0" />
-         </content>
-      </ScrollPane>
+      <TableView id="table" fx:id="TableBox" prefHeight="525.0" prefWidth="1280.0" stylesheets="@../Styles.css">
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy></TableView>
    </children>
 </VBox>
