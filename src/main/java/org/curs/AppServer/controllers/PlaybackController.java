@@ -1,7 +1,6 @@
 package org.curs.AppServer.controllers;
 
-import org.curs.AppServer.entities.Playback;
-import org.curs.AppServer.model.DTO.AdminPlaybackResponse;
+import org.curs.AppServer.model.DTO.CommonResponses.PlaybackResponse;
 import org.curs.AppServer.service.PlaybackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,9 +20,9 @@ public class PlaybackController {
     private PlaybackService playbackService;
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<AdminPlaybackResponse>> getAll() {
+    public ResponseEntity<List<PlaybackResponse>> getAll() {
 
-        Optional<List<AdminPlaybackResponse>> playbacks = playbackService.getAllPlaybacksForAdmin();
+        Optional<List<PlaybackResponse>> playbacks = playbackService.getAllPlaybacksForAdmin();
         if (playbacks.isPresent()) return new ResponseEntity<>(playbacks.get(), HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
