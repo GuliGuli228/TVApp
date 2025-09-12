@@ -1,7 +1,7 @@
 package org.curs.AppServer.controllers;
 
 import org.curs.AppServer.entities.Agent;
-import org.curs.AppServer.model.DTO.AdminAgentResponse;
+import org.curs.AppServer.model.DTO.AdminResponses.AdminAgentResponse;
 import org.curs.AppServer.service.AgentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
