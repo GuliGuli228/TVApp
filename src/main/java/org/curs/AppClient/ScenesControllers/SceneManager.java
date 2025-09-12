@@ -10,7 +10,7 @@ import org.curs.AppClient.JavaFXApp;
 import org.curs.AppClient.ScenesControllers.AdminControllers.*;
 import org.curs.AppClient.ScenesControllers.AgentContollers.AgentContractController;
 import org.curs.AppClient.ScenesControllers.AgentContollers.AgentCustomersController;
-import org.curs.AppClient.ScenesControllers.AgentContollers.AgentPlaybackController;
+import org.curs.AppClient.ScenesControllers.CommonControllers.PlaybackController;
 import org.curs.AppClient.ScenesControllers.CommonControllers.PromoController;
 import org.curs.AppClient.ScenesControllers.CommonControllers.TelecastController;
 
@@ -53,11 +53,10 @@ public class SceneManager {
         switch (scene){
             case ADMIN_CONTRACTS -> controller = new AdminContractController();
             case ADMIN_CUSTOMERS -> controller =new AdminCustomersController();
-            case ADMIN_PLAYBACK -> controller =new AdminPlaybackController();
             case AGENTS -> controller =new AdminAgentsController();
             case AGENT_CONTRACTS -> controller =new AgentContractController();
-            case AGENT_PLAYBACK -> controller =new AgentPlaybackController();
             case AGENT_CUSTOMERS -> controller =new AgentCustomersController();
+            case PLAYBACK -> controller =new PlaybackController();
             case PROMO -> controller =new PromoController();
             case TELECAST -> controller =new TelecastController();
         }
