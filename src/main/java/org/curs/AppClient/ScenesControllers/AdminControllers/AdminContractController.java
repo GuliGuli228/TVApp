@@ -27,7 +27,7 @@ public class AdminContractController extends AbstractController {
         super.initialize();
         LOGGER.info("Initializing from AdminContract");
         AdminAddButton.setDisable(true);
-        List<AppCache.AdminContract> contracts = AppCache.getContracts();
+        List<AppCache.AdminContract> contracts = AppCache.getAdminContracts();
 
         TableColumn<AppCache.AdminContract,Integer> tableColumnContractID = new TableColumn<>("ID Договора");
         TableColumn<AppCache.AdminContract,Integer> tableColumnAgentID = new TableColumn<>("ID Агента");
