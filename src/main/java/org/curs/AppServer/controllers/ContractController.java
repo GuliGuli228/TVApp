@@ -1,7 +1,7 @@
 package org.curs.AppServer.controllers;
 
-import org.curs.AppServer.entities.Contract;
-import org.curs.AppServer.model.DTO.AdminContractResponse;
+import org.curs.AppServer.model.DTO.AdminResponses.AdminContractResponse;
+import org.curs.AppServer.model.DTO.AgentResponses.AgentContractResponse;
 import org.curs.AppServer.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,11 +21,11 @@ public class ContractController {
     @Autowired
     private ContractService contractService;
 
-    @GetMapping("/byAgentId")
-    public ResponseEntity<List<Contract>> getByAgentId(@RequestParam Integer agentId){
-        Optional<List<Contract>> contracts = contractService.getAllContractsByAgentId(agentId);
-        if (contracts.isPresent()) return new ResponseEntity<>(contracts.get(), HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping("/findByAgentId")
+    public ResponseEntity<List<AgentContractResponse>> getByAgentId(@RequestParam Integer agentId){
+        Optional<List<AgentContractResponse>> response = contractService.getAllContractsForAgent(agentId);
+        if(response.isPresent()) return new ResponseEntity<>(response.get(), HttpStatus.OK);
+        else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/all")
