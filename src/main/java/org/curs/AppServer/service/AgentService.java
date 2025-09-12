@@ -3,7 +3,7 @@ package org.curs.AppServer.service;
 import org.curs.AppServer.controllers.AgentController;
 import org.curs.AppServer.entities.Agent;
 import org.curs.AppServer.entities.Contract;
-import org.curs.AppServer.model.DTO.AdminAgentResponse;
+import org.curs.AppServer.model.DTO.AdminResponses.AdminAgentResponse;
 import org.curs.AppServer.repository.AgentRepository;
 import org.curs.AppServer.repository.ContractRepository;
 import org.curs.AppServer.repository.PlaybackRepository;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
@@ -56,6 +55,6 @@ public class AgentService {
 
     public Optional<Agent> findAgentByUserId(Integer userId){
         log.info("getting agent by user id: " + userId);
-        return agentRepository.findById(userId);
+        return agentRepository.findAgentByUserId(userId);
     }
 }
