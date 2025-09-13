@@ -10,6 +10,7 @@ import org.curs.AppClient.JavaFXApp;
 import org.curs.AppClient.ScenesControllers.AdminControllers.*;
 import org.curs.AppClient.ScenesControllers.AgentContollers.AgentContractController;
 import org.curs.AppClient.ScenesControllers.AgentContollers.AgentCustomersController;
+import org.curs.AppClient.ScenesControllers.CommonControllers.AccountSceneController;
 import org.curs.AppClient.ScenesControllers.CommonControllers.PlaybackController;
 import org.curs.AppClient.ScenesControllers.CommonControllers.PromoController;
 import org.curs.AppClient.ScenesControllers.CommonControllers.TelecastController;
@@ -31,6 +32,7 @@ public class SceneManager {
             scenePaths.put("WelcomeScene", "/FXMLScenes/WelcomeScene.fxml");
             scenePaths.put("AgentScene", "/FXMLScenes/AgentScene.fxml");
             scenePaths.put("AdminScene", "/FXMLScenes/AdminScene.fxml");
+            scenePaths.put("AccountScene", "/FXMLScenes/AccountScene.fxml");
     }
 
     public static void showScene(String sceneName, Stage stage, Object controller) {
@@ -59,9 +61,14 @@ public class SceneManager {
             case PLAYBACK -> controller =new PlaybackController();
             case PROMO -> controller =new PromoController();
             case TELECAST -> controller =new TelecastController();
+            case ACCOUNT -> controller = new AccountSceneController();
         }
-        if (roleName.equals("Admin")) SceneManager.showScene("AdminScene", JavaFXApp.getPrimaryStage(), controller);
-        if (roleName.equals("Agent")) SceneManager.showScene("AgentScene", JavaFXApp.getPrimaryStage(), controller);
+        if (scene == Scenes.ACCOUNT) SceneManager.showScene("AccountScene",JavaFXApp.getPrimaryStage(),controller);
+        else {
+            if (roleName.equals("Admin")) SceneManager.showScene("AdminScene", JavaFXApp.getPrimaryStage(), controller);
+            if (roleName.equals("Agent")) SceneManager.showScene("AgentScene", JavaFXApp.getPrimaryStage(), controller);
+        }
+        AppCache.setLastScene(scene);
     }
 
     public static void showDialog(String dialogName, Stage ownerStage,Object controller)  {
