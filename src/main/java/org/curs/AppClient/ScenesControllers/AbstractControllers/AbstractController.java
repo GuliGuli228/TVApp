@@ -30,6 +30,8 @@ public class AbstractController {
     protected Button AdminAgentsButton;
     @FXML
     protected Button AdminTelecastButton;
+    @FXML
+    protected Button AdminAccountButton;
     /*-------------------*/
 
     //(required = false)
@@ -44,6 +46,8 @@ public class AbstractController {
     protected Button AgentPromoButton;
     @FXML
     protected Button AgentTelecastButton;
+    @FXML
+    protected Button AgentAccountButton;
     /*-------------------*/
 
     @FXML
@@ -56,6 +60,7 @@ public class AbstractController {
             AdminPlaybackButton.setOnAction(this::SwitchToPlayback);
             AdminTelecastButton.setOnAction(this::SwitchToTelecast);
             AdminPromosButton.setOnAction(this::SwitchToPromo);
+            AdminAccountButton.setOnAction(this::SwitchToAccount);
         }
         if(Objects.equals(AppCache.getRole(), "Agent")) {
             AgentContractButton.setOnAction(this::SwitchToAgentContract);
@@ -64,6 +69,7 @@ public class AbstractController {
             AgentPlaybackButton.setOnAction(this::SwitchToPlayback);
             AgentPromoButton.setOnAction(this::SwitchToPromo);
             AgentTelecastButton.setOnAction(this::SwitchToTelecast);
+            AgentAccountButton.setOnAction(this::SwitchToAccount);
         }
     }
     /*--- Admin Scenes--*/
@@ -107,7 +113,10 @@ public class AbstractController {
         logger.info("Switching to Agent Playback");
         SceneManager.switchScene(Scenes.PLAYBACK);
     }
-
+    protected void SwitchToAccount(ActionEvent event)  {
+        logger.info("Switching to Account");
+        SceneManager.switchScene(Scenes.ACCOUNT);
+    }
     /*------------------*/
 
 }
