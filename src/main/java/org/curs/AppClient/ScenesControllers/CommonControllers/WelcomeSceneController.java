@@ -46,7 +46,6 @@ public class WelcomeSceneController {
         connection = ApiUtil.fetchApi("/api/v1/user/login?login="+login+"&password="+password, ApiUtil.RequestMethod.POST,null);
 
         if(connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-            //JsonObject user = ApiUtil.getUserData("/api/v1/user/login", login);
             JsonObject user = Objects.requireNonNull(ApiUtil.parametricRequest("/api/v1/user/login", GET, Map.of("login", login))).getAsJsonObject();
             System.out.println(user);
 
@@ -54,12 +53,14 @@ public class WelcomeSceneController {
             AppCache.setRole(role);
             AppCache.setUserId(user.get("id").getAsInt());
             AppCache.setUserName(user.get("name").getAsString());
+            AppCache.setUserLogin(login);
 
             AppCache.loadCache();
 
 
-            if(role.equals("Admin")) SceneManager.showScene("AdminScene", JavaFXApp.getPrimaryStage(),new AdminContractController());
+            if(role.equals("Admin"))SceneManager.showScene("AdminScene", JavaFXApp.getPrimaryStage(),new AdminContractController());
             if(role.equals("Agent"))SceneManager.showScene("AgentScene", JavaFXApp.getPrimaryStage(),new AgentContractController());
+
         }
         else{//FIXME
             if (connection.getResponseCode() == HttpURLConnection.HTTP_UNAUTHORIZED) {
