@@ -105,3 +105,22 @@
 #Pane{
     -fx-background-color: #013686 ;
 }
+#BackButton{
+    -fx-text-fill: white;
+    -fx-background-color:  #013686;
+    -fx-border-width: 3;
+    -fx-border-color: black;
+}
+
+#BackButton:hover{
+    -fx-text-fill: #013686;
+    -fx-background-color: white;
+    -fx-border-color: #013686;
+}
+#DataPane{
+    -fx-background-color: transparent;
+    -fx-border-width: 5;
+    -fx-border-radius: 5
+;
+    -fx-border-color: #013686;
+}
