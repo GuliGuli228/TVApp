@@ -22,7 +22,7 @@
                         <Image url="@../Images/Icon.png" />
                      </image>
                   </ImageView>
-                  <Button id="AccountButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" stylesheets="@../Styles.css" text="Button" />
+                  <Button id="AccountButton" fx:id="AgentAccountButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" stylesheets="@../Styles.css" text="Button" />
                </children>
             </Pane>
             <FlowPane id="MenuBar" alignment="CENTER" hgap="33.0" minHeight="100.0" prefHeight="100.0" prefWidth="1181.0" stylesheets="@../Styles.css">
