@@ -12,41 +12,41 @@
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <HBox prefHeight="98.0" prefWidth="1280.0">
-            <children>
-                <Pane id="Pane" prefHeight="100.0" prefWidth="124.0" stylesheets="@../Styles.css">
-                    <children>
-                        <ImageView fitHeight="100.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../Images/Icon.png" />
-                            </image>
-                        </ImageView>
+   <children>
+      <HBox prefHeight="98.0" prefWidth="1280.0">
+         <children>
+            <Pane id="Pane" prefHeight="100.0" prefWidth="124.0" stylesheets="@../Styles.css">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Icon.png" />
+                     </image>
+                  </ImageView>
                   <Button id="AccountButton" fx:id="AdminAccountButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" stylesheets="@../Styles.css" text="Button" />
-                    </children>
-                </Pane>
-                <FlowPane id="MenuBar" alignment="CENTER" hgap="40.0" minHeight="100.0" prefHeight="100.0" prefWidth="1182.0" stylesheets="@../Styles.css">
-                    <children>
-                        <Button fx:id="AdminContractButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="129.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Договоры" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="20.0" />
-                            </font>
-                        </Button>
+               </children>
+            </Pane>
+            <FlowPane id="MenuBar" alignment="CENTER" hgap="40.0" minHeight="100.0" prefHeight="100.0" prefWidth="1182.0" stylesheets="@../Styles.css">
+               <children>
+                  <Button fx:id="AdminContractButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="129.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Договоры" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="AdminPlaybackButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="169.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Эфир показов" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Button>
-                        <Button fx:id="AdminCustomersButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="133.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Заказчики" textFill="WHITE">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Button>
-                        <Button fx:id="AdminPromosButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="115.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Ролики" textFill="WHITE">
-                            <font>
-                                <Font size="25.0" />
-                            </font>
-                        </Button>
+                  <Button fx:id="AdminCustomersButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="133.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Заказчики" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="AdminPromosButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="115.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Ролики" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="AdminAgentsButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="119.0" styleClass="MenuButtons" stylesheets="@../Styles.css" text="Агенты" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
@@ -57,48 +57,48 @@
                         <Font size="25.0" />
                      </font>
                   </Button>
-                    </children>
-                </FlowPane>
-            </children>
-        </HBox>
-        <HBox maxHeight="-Infinity" prefHeight="92.0" prefWidth="1280.0">
-            <children>
-                <Button id="AddButton" fx:id="AdminAddButton" minHeight="70.0" minWidth="70.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" stylesheets="@../Styles.css" text="+">
-                    <font>
-                        <Font name="System Bold" size="30.0" />
-                    </font>
-                    <HBox.margin>
-                        <Insets left="10.0" />
-                    </HBox.margin>
-                </Button>
-                <Pane id="ReloadButton" minHeight="70.0" minWidth="70.0" prefHeight="70.0" prefWidth="70.0" stylesheets="@../Styles.css">
-                    <HBox.margin>
-                        <Insets left="10.0" />
-                    </HBox.margin>
-                    <children>
-                        <Button minHeight="70.0" minWidth="70.0" mnemonicParsing="false" text="Button" visible="false" />
-                        <ImageView fitHeight="60.0" fitWidth="60.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" x="5.0" y="5.0">
-                            <image>
-                                <Image url="@../Images/reload.png" />
-                            </image>
-                        </ImageView>
-                    </children>
+               </children>
+            </FlowPane>
+         </children>
+      </HBox>
+      <HBox maxHeight="-Infinity" prefHeight="92.0" prefWidth="1280.0">
+         <children>
+            <Button id="AddButton" fx:id="AdminAddButton" minHeight="70.0" minWidth="70.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" stylesheets="@../Styles.css" text="+">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+            <Pane id="ReloadButton" minHeight="70.0" minWidth="70.0" prefHeight="70.0" prefWidth="70.0" stylesheets="@../Styles.css">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <children>
+                  <Button minHeight="70.0" minWidth="70.0" mnemonicParsing="false" text="Button" visible="false" />
+                  <ImageView fitHeight="60.0" fitWidth="60.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" x="5.0" y="5.0">
+                     <image>
+                        <Image url="@../Images/reload.png" />
+                     </image>
+                  </ImageView>
+               </children>
                <padding>
                   <Insets left="5.0" top="5.0" />
                </padding>
-                </Pane>
-            </children>
-            <opaqueInsets>
-                <Insets />
-            </opaqueInsets>
-            <padding>
-                <Insets bottom="10.0" top="10.0" />
-            </padding>
-        </HBox>
+            </Pane>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </HBox>
       <TableView id="table" fx:id="TableBox" prefHeight="559.0" prefWidth="1280.0" stylesheets="@../Styles.css">
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-    </children>
+   </children>
 </VBox>
