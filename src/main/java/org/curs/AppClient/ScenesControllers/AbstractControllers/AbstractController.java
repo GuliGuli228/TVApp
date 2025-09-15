@@ -37,6 +37,8 @@ public class AbstractController {
     //(required = false)
     /*---Agent Buttons----*/
     @FXML
+    protected  Button AgentAddButton;
+    @FXML
     protected Button AgentContractButton;
     @FXML
     protected Button AgentPlaybackButton;
