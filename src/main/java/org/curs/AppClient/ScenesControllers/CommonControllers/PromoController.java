@@ -7,7 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.curs.AppClient.AppCache;
+import org.curs.AppClient.JavaFXApp;
 import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractController;
+import org.curs.AppClient.ScenesControllers.DialogControllers.AddPromoController;
+import org.curs.AppClient.ScenesControllers.SceneManager;
 
 import java.util.List;
 
@@ -23,7 +26,14 @@ public class PromoController extends AbstractController {
         if(!promoResponses.isEmpty()){
             System.out.println(promoResponses);
         }
+        this.addTable(promoResponses, TableBox);
+        if(AppCache.getRole().equals("Agent")) AgentAddButton.setDisable(true);
+        if(AppCache.getRole().equals("Admin")) AdminAddButton.setOnAction(event -> {
+            SceneManager.showDialog("AddPromo", JavaFXApp.getPrimaryStage(), new AddPromoController());
+        });
+    }
 
+    private void addTable(List<AppCache.PromoResponse> promoResponses, TableView<AppCache.PromoResponse> TableBox) {
         TableColumn<AppCache.PromoResponse, Integer> tableColumnPromoId = new TableColumn<>("ID Ролика");
         TableColumn<AppCache.PromoResponse, Integer> tableColumnCustomerId = new TableColumn<>("ID Заказчика");
         TableColumn<AppCache.PromoResponse, String> tableColumnDuration = new TableColumn<>("Продолжительность");
@@ -40,5 +50,6 @@ public class PromoController extends AbstractController {
         ObservableList<AppCache.PromoResponse> responses = FXCollections.observableList(promoResponses);
         TableBox.setItems(responses);
     }
+
 
 }

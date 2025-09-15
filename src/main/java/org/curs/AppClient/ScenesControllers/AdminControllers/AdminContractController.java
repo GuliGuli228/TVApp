@@ -28,6 +28,11 @@ public class AdminContractController extends AbstractController {
         LOGGER.info("Initializing from AdminContract");
         AdminAddButton.setDisable(true);
         List<AppCache.AdminContract> contracts = AppCache.getAdminContracts();
+        this.addTable(contracts, TableBox);
+
+    }
+
+    private void addTable(List<AppCache.AdminContract> contracts, TableView<AppCache.AdminContract> TableBox) {
 
         TableColumn<AppCache.AdminContract,Integer> tableColumnContractID = new TableColumn<>("ID Договора");
         TableColumn<AppCache.AdminContract,Integer> tableColumnAgentID = new TableColumn<>("ID Агента");
@@ -44,5 +49,4 @@ public class AdminContractController extends AbstractController {
         ObservableList<AppCache.AdminContract> observableList = FXCollections.observableList(contracts);
         TableBox.setItems(observableList);
     }
-
 }
