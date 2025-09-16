@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import org.curs.AppClient.AppCache;
 import org.curs.AppClient.ScenesControllers.SceneManager;
-import org.curs.AppClient.ScenesControllers.Scenes;
+import org.curs.AppClient.Enums.Scenes;
 
 import java.util.Objects;
 import java.util.logging.Logger;
