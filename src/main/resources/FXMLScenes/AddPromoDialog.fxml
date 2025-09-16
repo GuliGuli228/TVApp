@@ -20,7 +20,7 @@
                 <Insets bottom="5.0" left="5.0" top="5.0" />
             </VBox.margin>
         </Label>
-      <TextArea maxHeight="200.0" minHeight="50.0" prefHeight="128.0" prefWidth="380.0" wrapText="true">
+      <TextArea fx:id="URLPromoField" maxHeight="200.0" minHeight="50.0" prefHeight="128.0" prefWidth="380.0" wrapText="true">
          <VBox.margin>
             <Insets left="5.0" right="5.0" />
          </VBox.margin>
@@ -36,7 +36,7 @@
                 <Insets bottom="5.0" left="5.0" top="5.0" />
             </VBox.margin>
         </Label>
-        <TextField prefHeight="44.0" prefWidth="122.0">
+        <TextField fx:id="CustomerIdField" prefHeight="44.0" prefWidth="122.0">
             <font>
                 <Font size="20.0" />
             </font>
@@ -54,24 +54,24 @@
         </Label>
       <FlowPane alignment="CENTER" hgap="15.0" prefHeight="11.0" prefWidth="390.0">
          <children>
-            <ComboBox editable="true" prefWidth="100.0" promptText="Часы" />
+            <ComboBox fx:id="Hours" editable="true" prefWidth="100.0" promptText="Часы" />
             <Label prefHeight="17.0" prefWidth="0.0" text=":">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <ComboBox editable="true" prefWidth="100.0" promptText="Минуты" />
+            <ComboBox fx:id="Minutes" editable="true" prefWidth="100.0" promptText="Минуты" />
             <Label prefHeight="17.0" prefWidth="0.0" text=":">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <ComboBox editable="true" prefWidth="100.0" promptText="Секунды" />
+            <ComboBox fx:id="Seconds" editable="true" prefWidth="100.0" promptText="Секунды" />
          </children>
       </FlowPane>
         <FlowPane alignment="TOP_CENTER" hgap="50.0" prefHeight="68.0" prefWidth="390.0">
             <children>
-                <Button defaultButton="true" mnemonicParsing="false" styleClass="AddCustButt" stylesheets="@../Styles.css" text="Добавить" textFill="#fcfcfc">
+                <Button fx:id="AddDialogButton" defaultButton="true" mnemonicParsing="false" styleClass="AddCustButt" stylesheets="@../Styles.css" text="Добавить" textFill="#fcfcfc">
                     <font>
                         <Font name="System Bold" size="20.0" />
                     </font>
@@ -79,7 +79,7 @@
                         <Insets />
                     </FlowPane.margin>
                 </Button>
-                <Button fx:id="CancelButton" mnemonicParsing="false" styleClass="AddCustButt" stylesheets="@../Styles.css" text="Отмена" textFill="WHITE">
+                <Button fx:id="CancelDialogButton" mnemonicParsing="false" styleClass="AddCustButt" stylesheets="@../Styles.css" text="Отмена" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="20.0" />
                     </font>

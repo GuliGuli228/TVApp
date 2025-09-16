@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="DataPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="400.0" stylesheets="@../Styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="DataPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="400.0" stylesheets="@../Styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label styleClass="AddLabel" stylesheets="@../Styles.css" text="Номер телефона">
          <font>
@@ -18,7 +18,7 @@
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" top="5.0" />
          </VBox.margin></Label>
-      <TextField>
+      <TextField fx:id="CustomerPhoneNumber">
          <font>
             <Font size="20.0" />
          </font>
@@ -33,7 +33,7 @@
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" top="5.0" />
          </VBox.margin></Label>
-      <TextArea prefHeight="0.0" prefWidth="400.0">
+      <TextArea fx:id="CustomerIbanField" prefHeight="0.0" prefWidth="400.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -51,41 +51,22 @@
          <font>
             <Font size="20.0" />
          </font></Label>
-      <TextArea prefHeight="24.0" prefWidth="390.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-         <padding>
-            <Insets top="4.0" />
-         </padding>
-         <VBox.margin>
-            <Insets bottom="15.0" left="5.0" right="5.0" />
-         </VBox.margin>
-      </TextArea>
-      <Label styleClass="AddLabel" stylesheets="@../Styles.css" text="Назначенный агент(ID)">
+      <TextField fx:id="CustomerContactPersonField">
          <font>
             <Font size="20.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" />
-         </VBox.margin>
-      </Label>
-      <TextField>
-         <font>
-            <Font size="20.0" />
-         </font>
-         <VBox.margin>
-            <Insets bottom="15.0" left="5.0" right="5.0" />
+            <Insets bottom="10.0" left="5.0" right="5.0" />
          </VBox.margin>
       </TextField>
       <FlowPane alignment="TOP_CENTER" hgap="50.0" prefHeight="23.0" prefWidth="400.0">
          <children>
-            <Button defaultButton="true" mnemonicParsing="false" styleClass="AddCustButt" stylesheets="@../Styles.css" text="Добавить" textFill="#fcfcfc">
+            <Button fx:id="AddDialogButton" defaultButton="true" mnemonicParsing="false" styleClass="AddCustButt" stylesheets="@../Styles.css" text="Добавить" textFill="#fcfcfc">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="CancelButton" mnemonicParsing="false" styleClass="AddCustButt" stylesheets="@../Styles.css" text="Отмена" textFill="WHITE">
+            <Button fx:id="CancelDialogButton" mnemonicParsing="false" styleClass="AddCustButt" stylesheets="@../Styles.css" text="Отмена" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>

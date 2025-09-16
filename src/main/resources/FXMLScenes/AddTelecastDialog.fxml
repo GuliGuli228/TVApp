@@ -18,7 +18,7 @@
                 <Insets bottom="5.0" left="5.0" top="5.0" />
             </VBox.margin>
         </Label>
-        <TextField>
+        <TextField fx:id="TelecastNameField">
             <font>
                 <Font size="20.0" />
             </font>
@@ -34,7 +34,7 @@
                 <Insets bottom="5.0" left="5.0" top="5.0" />
             </VBox.margin>
         </Label>
-        <TextField>
+        <TextField fx:id="TelecastRatingField">
             <font>
                 <Font size="20.0" />
             </font>
@@ -50,7 +50,7 @@
                 <Insets bottom="5.0" left="5.0" top="5.0" />
             </VBox.margin>
         </Label>
-        <TextField>
+        <TextField fx:id="TelecastMinutePrice">
             <font>
                 <Font size="20.0" />
             </font>
@@ -60,7 +60,7 @@
         </TextField>
         <FlowPane alignment="TOP_CENTER" hgap="50.0" prefHeight="68.0" prefWidth="390.0">
             <children>
-                <Button defaultButton="true" mnemonicParsing="false" styleClass="AddCustButt" stylesheets="@../Styles.css" text="Добавить" textFill="#fcfcfc">
+                <Button fx:id="AddDialogButton" defaultButton="true" mnemonicParsing="false" styleClass="AddCustButt" stylesheets="@../Styles.css" text="Добавить" textFill="#fcfcfc">
                     <font>
                         <Font name="System Bold" size="20.0" />
                     </font>
@@ -68,7 +68,7 @@
                         <Insets />
                     </FlowPane.margin>
                 </Button>
-                <Button fx:id="CancelButton" mnemonicParsing="false" styleClass="AddCustButt" stylesheets="@../Styles.css" text="Отмена" textFill="WHITE">
+                <Button fx:id="CancelDialogButton" mnemonicParsing="false" styleClass="AddCustButt" stylesheets="@../Styles.css" text="Отмена" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="20.0" />
                     </font>
