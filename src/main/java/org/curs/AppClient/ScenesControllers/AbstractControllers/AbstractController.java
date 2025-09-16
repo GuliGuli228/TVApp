@@ -10,7 +10,7 @@ import org.curs.AppClient.Enums.Scenes;
 import java.util.Objects;
 import java.util.logging.Logger;
 
-public class AbstractController {
+public abstract class AbstractController {
 
     Logger logger = Logger.getLogger(this.getClass().getName());
 
