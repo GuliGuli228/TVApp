@@ -7,7 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.curs.AppClient.AppCache;
+import org.curs.AppClient.Enums.Dialogs;
+import org.curs.AppClient.JavaFXApp;
 import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractController;
+import org.curs.AppClient.ScenesControllers.SceneManager;
 
 import java.util.List;
 
@@ -21,7 +24,12 @@ public class AgentContractController extends AbstractController {
         super.initialize();
         List<AppCache.AgentContractResponse> agentContractResponses = AppCache.getAgentContractResponses();
         System.out.println("agentContractResponses: " + agentContractResponses);
-
+        this.addTable(agentContractResponses, TableBox);
+        AgentAddButton.setOnAction(event -> {
+            SceneManager.showDialog(Dialogs.ADD_CONTRACT, JavaFXApp.getPrimaryStage());
+        });
+    }
+    private void addTable(List<AppCache.AgentContractResponse> agentContractResponses, TableView<AppCache.AgentContractResponse> TableBox) {
         TableColumn<AppCache.AgentContractResponse, Integer> tableColumnContractId = new TableColumn<>("ID Контракта");
         TableColumn<AppCache.AgentContractResponse, Integer> tableColumnCustomerId = new TableColumn<>("ID Заказчика");
         TableColumn<AppCache.AgentContractResponse, Double> tableColumnPrice = new TableColumn<>("Стоимость");
@@ -34,4 +42,5 @@ public class AgentContractController extends AbstractController {
         ObservableList<AppCache.AgentContractResponse> responses = FXCollections.observableList(agentContractResponses);
         TableBox.setItems(responses);
     }
+
 }

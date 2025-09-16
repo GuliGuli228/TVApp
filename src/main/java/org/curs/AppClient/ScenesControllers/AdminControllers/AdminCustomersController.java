@@ -7,9 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.curs.AppClient.AppCache;
+import org.curs.AppClient.Enums.Dialogs;
 import org.curs.AppClient.JavaFXApp;
 import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractController;
-import org.curs.AppClient.ScenesControllers.DialogControllers.AddCustomerController;
 import org.curs.AppClient.ScenesControllers.SceneManager;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class AdminCustomersController extends AbstractController {
         List<AppCache.CustomersResponse> customersResponses = AppCache.getCustomersResponses();
         this.addTable(customersResponses, TableBox);
         AdminAddButton.setOnAction(event -> {
-            SceneManager.showDialog("AddCustomer", JavaFXApp.getPrimaryStage(), new AddCustomerController());
+            SceneManager.showDialog(Dialogs.ADD_CUSTOMER, JavaFXApp.getPrimaryStage());
         });
 
     }

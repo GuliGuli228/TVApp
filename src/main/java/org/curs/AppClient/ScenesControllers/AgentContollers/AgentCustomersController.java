@@ -22,7 +22,12 @@ public class AgentCustomersController extends AbstractController {
 
         List<AppCache.CustomersResponse> customersResponses = AppCache.getCustomersResponses();
         System.out.println("customersResponses: " + customersResponses);
+        this.addTable(customersResponses, TableBox);
+        AgentAddButton.setDisable(true);
 
+
+    }
+    private void addTable(List<AppCache.CustomersResponse> customersResponses, TableView<AppCache.CustomersResponse> TableBox) {
         TableColumn<AppCache.CustomersResponse, Integer> tableColumnCustomerId = new TableColumn<>("ID Заказчика");
         TableColumn<AppCache.CustomersResponse, String> tableColumnCustomerIban = new TableColumn<>("Банковские реквизиты");
         TableColumn<AppCache.CustomersResponse, String> tableColumnCustomerPhone = new TableColumn<>("Номер телефона");
@@ -41,4 +46,5 @@ public class AgentCustomersController extends AbstractController {
         ObservableList<AppCache.CustomersResponse> list = FXCollections.observableArrayList(customersResponses);
         TableBox.setItems(list);
     }
+
 }

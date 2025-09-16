@@ -7,9 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.curs.AppClient.AppCache;
+import org.curs.AppClient.Enums.Dialogs;
 import org.curs.AppClient.JavaFXApp;
 import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractController;
-import org.curs.AppClient.ScenesControllers.DialogControllers.AddPromoController;
 import org.curs.AppClient.ScenesControllers.SceneManager;
 
 import java.util.List;
@@ -29,7 +29,7 @@ public class PromoController extends AbstractController {
         this.addTable(promoResponses, TableBox);
         if(AppCache.getRole().equals("Agent")) AgentAddButton.setDisable(true);
         if(AppCache.getRole().equals("Admin")) AdminAddButton.setOnAction(event -> {
-            SceneManager.showDialog("AddPromo", JavaFXApp.getPrimaryStage(), new AddPromoController());
+            SceneManager.showDialog(Dialogs.ADD_PROMO, JavaFXApp.getPrimaryStage());
         });
     }
 

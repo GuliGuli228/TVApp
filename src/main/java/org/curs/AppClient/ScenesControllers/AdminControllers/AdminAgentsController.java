@@ -8,9 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.curs.AppClient.AppCache;
+import org.curs.AppClient.Enums.Dialogs;
 import org.curs.AppClient.JavaFXApp;
 import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractController;
-import org.curs.AppClient.ScenesControllers.DialogControllers.AddAgentController;
 import org.curs.AppClient.ScenesControllers.SceneManager;
 
 import java.util.List;
@@ -27,9 +27,8 @@ public class AdminAgentsController extends AbstractController {
         List<AppCache.AdminAgentResponse> adminAgentResponses = AppCache.getAdminAgentResponses();
         this.addTable(adminAgentResponses, TableBox);
         AdminAddButton.setOnAction(event -> {
-            SceneManager.showDialog("AddAgent", JavaFXApp.getPrimaryStage(), new  AddAgentController() );
+            SceneManager.showDialog(Dialogs.ADD_AGENT, JavaFXApp.getPrimaryStage());
         });
-
     }
 
     private void addTable(List<AppCache.AdminAgentResponse> adminAgentResponse, TableView<AppCache.AdminAgentResponse> TableBox) {

@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.curs.AppClient.AppCache;
+import org.curs.AppClient.Enums.ApiPaths;
 import org.curs.AppClient.JavaFXApp;
 import org.curs.AppClient.ScenesControllers.AdminControllers.AdminContractController;
 import org.curs.AppClient.ScenesControllers.AgentContollers.AgentContractController;
@@ -43,10 +44,11 @@ public class WelcomeSceneController {
         HttpURLConnection connection;
 
 
+        //TODO переписать на ParametricRequest и Post(Логи и пароль прередавать в теле а не в URL)
         connection = ApiUtil.fetchApi("/api/v1/user/login?login="+login+"&password="+password, ApiUtil.RequestMethod.POST,null);
 
         if(connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-            JsonObject user = Objects.requireNonNull(ApiUtil.parametricRequest("/api/v1/user/login", GET, Map.of("login", login))).getAsJsonObject();
+            JsonObject user = Objects.requireNonNull(ApiUtil.parametricRequest(ApiPaths.GET_USER_DATA, GET, Map.of("login", login))).getAsJsonObject();
             System.out.println(user);
 
             String role = user.get("role").getAsString();

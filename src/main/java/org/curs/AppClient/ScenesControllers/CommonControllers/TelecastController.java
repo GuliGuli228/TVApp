@@ -7,9 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.curs.AppClient.AppCache;
+import org.curs.AppClient.Enums.Dialogs;
 import org.curs.AppClient.JavaFXApp;
 import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractController;
-import org.curs.AppClient.ScenesControllers.DialogControllers.AddTelecastController;
 import org.curs.AppClient.ScenesControllers.SceneManager;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class TelecastController extends AbstractController {
         this.addTable(telecastResponses, TableBox);
         if(AppCache.getRole().equals("Agent")) AgentAddButton.setDisable(true);
         if(AppCache.getRole().equals("Admin")) AdminAddButton.setOnAction(event -> {
-            SceneManager.showDialog("AddTelecast", JavaFXApp.getPrimaryStage(), new AddTelecastController());
+            SceneManager.showDialog(Dialogs.ADD_TELECAST, JavaFXApp.getPrimaryStage());
         });
 
 
