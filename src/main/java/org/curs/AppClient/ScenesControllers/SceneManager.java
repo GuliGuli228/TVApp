@@ -9,6 +9,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.curs.AppClient.AppCache;
+import org.curs.AppClient.Enums.Dialogs;
+import org.curs.AppClient.Enums.Scenes;
 import org.curs.AppClient.JavaFXApp;
 import org.curs.AppClient.ScenesControllers.AdminControllers.*;
 import org.curs.AppClient.ScenesControllers.AgentContollers.AgentContractController;
@@ -17,6 +19,7 @@ import org.curs.AppClient.ScenesControllers.CommonControllers.AccountSceneContro
 import org.curs.AppClient.ScenesControllers.CommonControllers.PlaybackController;
 import org.curs.AppClient.ScenesControllers.CommonControllers.PromoController;
 import org.curs.AppClient.ScenesControllers.CommonControllers.TelecastController;
+import org.curs.AppClient.ScenesControllers.DialogControllers.*;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -39,26 +42,12 @@ public class SceneManager {
             scenePaths.put("AccountScene", "/FXMLScenes/AccountScene.fxml");
 
             dialogPaths.put("AddAgent", "/FXMLScenes/AddAgentDialog.fxml");
-            dialogPaths.put("AddContract", "FXMLScenes/AddContractDialog.fxml");
+            dialogPaths.put("AddContract", "/FXMLScenes/AddContractDialog.fxml");
             dialogPaths.put("AddCustomer", "/FXMLScenes/AddCustomerDialog.fxml");
             dialogPaths.put("AddTelecast", "/FXMLScenes/AddTelecastDialog.fxml");
-            dialogPaths.put("AddPromo", "/FXMLScenes/AddPromoDialog.fxml");
-    }
+            dialogPaths.put("AddPromo", "/FXMLScenes/AddPromoDialog.fxml");}
 
-    public static void showScene(String sceneName, Stage stage, Object controller) {
-        try {
-            FXMLLoader loader;
-            loader = new FXMLLoader(Objects.requireNonNull(SceneManager.class.getResource(scenePaths.get(sceneName))));
-            loader.setController(controller);
-            logger.info("current controller: " + loader.getController().getClass().getName());
-            Scene scene = new Scene(loader.load());
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            System.out.println("Ошибка зак грузки сцены");
-            e.printStackTrace();
-        }
-    }
+
     public static void switchScene(Scenes scene){
         String roleName = AppCache.getRole();
         Object controller = null;
@@ -80,8 +69,33 @@ public class SceneManager {
         }
         AppCache.setLastScene(scene);
     }
+    public static void showDialog (Dialogs dialog, Stage ownerStage){
+        switch (dialog){
+            case ADD_AGENT ->  SceneManager.initDialog("AddAgentDialog",ownerStage,new AddAgentController());
+            case ADD_CUSTOMER -> SceneManager.initDialog("AddCustomer", ownerStage,new AddCustomerController());
+            case ADD_TELECAST -> SceneManager.initDialog("AddTelecast", ownerStage,new AddTelecastController());
+            case ADD_PROMO -> SceneManager.initDialog("AddPromo", ownerStage,new AddPromoController());
+            case ADD_CONTRACT -> SceneManager.initDialog("AddContract", ownerStage,new AddContractController());
+        }
+    }
 
-    public static void showDialog(String dialogName, Stage ownerStage, Object controller)  {
+
+    public static void showScene(String sceneName, Stage stage, Object controller) {
+        try {
+            FXMLLoader loader;
+            loader = new FXMLLoader(Objects.requireNonNull(SceneManager.class.getResource(scenePaths.get(sceneName))));
+            loader.setController(controller);
+            logger.info("current controller: " + loader.getController().getClass().getName());
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Ошибка зак грузки сцены");
+            e.printStackTrace();
+        }
+    }
+
+    private static void initDialog(String dialogName, Stage ownerStage, Object controller)  {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(SceneManager.class.getResource(dialogPaths.get(dialogName))));
