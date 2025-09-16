@@ -1,4 +1,4 @@
-package org.curs.AppClient.ScenesControllers;
+package org.curs.AppClient.Enums;
 
 public enum Scenes {
     ADMIN_CONTRACTS, ADMIN_CUSTOMERS,AGENTS, // Экраны Админа
