@@ -2,13 +2,15 @@ package org.curs.AppClient;
 
 
 import com.google.gson.*;
-import org.curs.AppClient.ScenesControllers.Scenes;
+import org.curs.AppClient.Enums.ApiPaths;
+import org.curs.AppClient.Enums.Scenes;
 import org.curs.AppClient.Utils.ApiUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 public class AppCache {
@@ -155,9 +157,9 @@ public class AppCache {
     public static void loadCache(){
         try {
             if (role.equals("Admin")){
-                JsonArray contracts = ApiUtil.nonParametricRequest("/api/v1/contract/all").getAsJsonArray();
-                JsonArray agents = ApiUtil.nonParametricRequest("/api/v1/agent/getAll").getAsJsonArray();
-                JsonArray customers = ApiUtil.nonParametricRequest("/api/v1/customer/getAll").getAsJsonArray();
+                JsonArray contracts = ApiUtil.nonParametricRequest(ApiPaths.GET_ALL_CONTRACT).getAsJsonArray();
+                JsonArray agents = ApiUtil.nonParametricRequest(ApiPaths.GET_ALL_AGENTS).getAsJsonArray();
+                JsonArray customers = ApiUtil.nonParametricRequest(ApiPaths.GET_ALL_CUSTOMERS).getAsJsonArray();
 
                 adminContracts = AppCache.parser(AdminContract.class, contracts);
                 adminAgentResponses =  AppCache.parser(AdminAgentResponse.class, agents);
@@ -166,20 +168,20 @@ public class AppCache {
                 AppCache.setLastScene(Scenes.ADMIN_CONTRACTS);
             }
             if(role.equals("Agent")){
-                Integer agentId = ApiUtil.parametricRequest(
-                        "/api/v1/agent/findByUserId",
+                int agentId = Objects.requireNonNull(ApiUtil.parametricRequest(
+                        ApiPaths.GET_AGENT_BY_USER_ID,
                         ApiUtil.RequestMethod.GET,
-                        Map.of("userId", userId.toString())).getAsJsonObject().get("id").getAsInt();
+                        Map.of("userId", userId.toString()))).getAsJsonObject().get("id").getAsInt();
 
-                JsonArray contracts = ApiUtil.parametricRequest(
-                        "/api/v1/contract/findByAgentId",
+                JsonArray contracts = Objects.requireNonNull(ApiUtil.parametricRequest(
+                        ApiPaths.GET_CONTRACTS_BY_AGENT_ID,
                         ApiUtil.RequestMethod.GET,
-                        Map.of("agentId", agentId.toString())).getAsJsonArray();
+                        Map.of("agentId", Integer.toString(agentId)))).getAsJsonArray();
 
-                JsonArray customers = ApiUtil.parametricRequest(
-                        "/api/v1/customer/getAllForAgent",
+                JsonArray customers = Objects.requireNonNull(ApiUtil.parametricRequest(
+                        ApiPaths.GET_CUSTOMERS_BY_AGENT_ID,
                         ApiUtil.RequestMethod.GET,
-                        Map.of("agentId", agentId.toString())).getAsJsonArray();
+                        Map.of("agentId", Integer.toString(agentId)))).getAsJsonArray();
 
                 agentContractResponses = AppCache.parser(AgentContractResponse.class, contracts);
                 customersResponses = AppCache.parser(CustomersResponse.class, customers);
@@ -188,9 +190,9 @@ public class AppCache {
 
             }
 
-            JsonArray promos = ApiUtil.nonParametricRequest("/api/v1/promo/getAll").getAsJsonArray();
-            JsonArray telecasts = ApiUtil.nonParametricRequest("/api/v1/telecast/getAll").getAsJsonArray();
-            JsonArray playbacks = ApiUtil.nonParametricRequest("/api/v1/playback/getAll").getAsJsonArray();
+            JsonArray promos = ApiUtil.nonParametricRequest(ApiPaths.GET_ALL_PROMOS).getAsJsonArray();
+            JsonArray telecasts = ApiUtil.nonParametricRequest(ApiPaths.GET_ALL_TELECASTS).getAsJsonArray();
+            JsonArray playbacks = ApiUtil.nonParametricRequest(ApiPaths.GET_ALL_PLAYBACKS).getAsJsonArray();
 
 
             promoResponses = AppCache.parser(PromoResponse.class, promos);
