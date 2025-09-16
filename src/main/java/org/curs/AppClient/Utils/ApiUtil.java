@@ -3,6 +3,7 @@ package org.curs.AppClient.Utils;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.curs.AppClient.Enums.ApiPaths;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -33,15 +34,15 @@ public class ApiUtil {
         return connection;
     }
 
-    public static JsonObject getUserData(String apiPath, String login) throws IOException {
-        return ApiUtil.nonParametricRequest(apiPath + "?login=" + login).getAsJsonObject();
-    }
-    public static JsonObject getAgentContractsById(String apiPath, Integer id) throws IOException{
-        return ApiUtil.nonParametricRequest(apiPath + "?id=" + id).getAsJsonObject();
-    }
+//    public static JsonObject getUserData(String apiPath, String login) throws IOException {
+//        return ApiUtil.nonParametricRequest(apiPath + "?login=" + login).getAsJsonObject();
+//    }
+//    public static JsonObject getAgentContractsById(String apiPath, Integer id) throws IOException{
+//        return ApiUtil.nonParametricRequest(apiPath + "?id=" + id).getAsJsonObject();
+//    }
 
-    public static JsonElement nonParametricRequest(String apiPath) throws IOException{
-        URL url = new URL(SERVER_URL + apiPath);
+    public static JsonElement nonParametricRequest(ApiPaths apiPath) throws IOException{
+        URL url = new URL(SERVER_URL + apiPath.getPath());
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept", "application/json");
@@ -61,7 +62,7 @@ public class ApiUtil {
         return new JsonParser().parse(sb.toString());
     }
 
-    public static JsonElement parametricRequest(String apiPath,
+    public static JsonElement parametricRequest(ApiPaths apiPath,
                                                 RequestMethod requestMethod,
                                                 Map<String, String> parameters) throws IOException{
 
@@ -73,7 +74,7 @@ public class ApiUtil {
             path.deleteCharAt(path.length() - 1); // убираем последний &
         }
 
-        URL url = new URL(SERVER_URL+ apiPath + "?" + path);
+        URL url = new URL(SERVER_URL+ apiPath.getPath() + "?" + path);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod(requestMethod.name());
         connection.setRequestProperty("Accept", "application/json");
