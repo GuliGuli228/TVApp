@@ -25,9 +25,7 @@ public class PlaybackController extends AbstractController {
         System.out.println("playbackResponses: " + playbackResponses);
         this.addTable(playbackResponses, TableBox);
         if (AppCache.getRole().equals("Agent")) AgentAddButton.setDisable(true);
-        if(AppCache.getRole().equals("Admin")) AdminAddButton.setOnAction(event -> {
-            SceneManager.showDialog(Dialogs.ADD_PROMO, JavaFXApp.getPrimaryStage());
-        });
+        if(AppCache.getRole().equals("Admin")) AdminAddButton.setDisable(true);
 
 
     }
