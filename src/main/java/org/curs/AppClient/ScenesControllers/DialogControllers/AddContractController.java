@@ -1,4 +1,6 @@
 package org.curs.AppClient.ScenesControllers.DialogControllers;
 
-public class AddContractController {
+import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractDialogController;
+
+public class AddContractController extends AbstractDialogController {
 }
