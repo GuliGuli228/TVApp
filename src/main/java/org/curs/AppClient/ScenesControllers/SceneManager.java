@@ -71,7 +71,7 @@ public class SceneManager {
     }
     public static void showDialog (Dialogs dialog, Stage ownerStage){
         switch (dialog){
-            case ADD_AGENT ->  SceneManager.initDialog("AddAgentDialog",ownerStage,new AddAgentController());
+            case ADD_AGENT ->  SceneManager.initDialog("AddAgent",ownerStage,new AddAgentController());
             case ADD_CUSTOMER -> SceneManager.initDialog("AddCustomer", ownerStage,new AddCustomerController());
             case ADD_TELECAST -> SceneManager.initDialog("AddTelecast", ownerStage,new AddTelecastController());
             case ADD_PROMO -> SceneManager.initDialog("AddPromo", ownerStage,new AddPromoController());
