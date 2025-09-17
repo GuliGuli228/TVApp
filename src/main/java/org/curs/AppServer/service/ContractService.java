@@ -1,15 +1,23 @@
 package org.curs.AppServer.service;
 
+
+import jakarta.transaction.Transactional;
 import org.curs.AppServer.entities.Contract;
 import org.curs.AppServer.entities.Playback;
 import org.curs.AppServer.model.DTO.AdminResponses.AdminContractResponse;
+import org.curs.AppServer.model.DTO.AgentResponses.AgentAddContractRequest;
 import org.curs.AppServer.model.DTO.AgentResponses.AgentContractResponse;
-import org.curs.AppServer.repository.ContractRepository;
-import org.curs.AppServer.repository.PlaybackRepository;
+import org.curs.AppServer.model.DTO.CommonResponses.PlaybackRequest;
+import org.curs.AppServer.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -18,6 +26,14 @@ public class ContractService {
     private ContractRepository contractRepository;
     @Autowired
     private PlaybackRepository playbackRepository;
+    @Autowired
+    private AgentRepository agentRepository;
+    @Autowired
+    private CustomerRepository customerRepository;
+    @Autowired
+    private TelecastRepository telecastRepository;
+    @Autowired
+    private PromoRepository promoRepository;
 
 
     private static final Logger log = Logger.getLogger(ContractService.class.getName());
@@ -63,5 +79,26 @@ public class ContractService {
         }
         return Optional.of(response);
     }
+
+    @Transactional
+    public void addContract(AgentAddContractRequest request){
+        //TODO Прописать проверку для Optional
+        Contract contract = new Contract();
+        contract.setAgent(agentRepository.findById(request.agentId()).get());
+        contract.setCustomer(customerRepository.findById(request.customerId()).get());
+        contractRepository.save(contract);
+
+        for (PlaybackRequest currentPlayback: request.playbacks()){
+
+            Playback playback = new Playback();
+            playback.setContract(contract);
+            playback.setPlaybackDate(Date.valueOf(currentPlayback.date()));
+            playback.setPlaybackTime(Time.valueOf(currentPlayback.time()));
+            playback.setTelecast(telecastRepository.findById(currentPlayback.telecastId()).get());
+            playback.setPromo(promoRepository.findById(currentPlayback.telecastId()).get());
+            playbackRepository.save(playback);
+        }
+    }
+
 
 }

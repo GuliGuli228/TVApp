@@ -18,4 +18,7 @@ public class TelecastService {
         List<Telecast> telecasts = telecastRepository.findAll();
         return Optional.of(telecasts);
     }
+    public void addTelecast(Telecast telecast){
+        telecastRepository.save(telecast);
+    }
 }

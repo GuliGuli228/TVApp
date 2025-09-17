@@ -1,10 +1,12 @@
 package org.curs.AppServer.service;
 
 import org.curs.AppServer.entities.Playback;
+import org.curs.AppServer.entities.Promo;
 import org.curs.AppServer.model.DTO.CommonResponses.PlaybackResponse;
 import org.curs.AppServer.repository.PlaybackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;

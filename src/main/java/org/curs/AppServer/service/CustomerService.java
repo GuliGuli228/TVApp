@@ -70,4 +70,8 @@ public class CustomerService {
         }
         return Optional.of(response);
     }
+
+    public void addCustomer(Customer customer) {
+        customerRepository.save(customer);
+    }
 }

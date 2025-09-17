@@ -32,4 +32,7 @@ public class PromoService {
         }
         return Optional.empty();
     }
+    public void addPromo(Promo promo){
+        promoRepository.save(promo);
+    }
 }
