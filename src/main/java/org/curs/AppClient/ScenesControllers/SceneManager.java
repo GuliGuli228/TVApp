@@ -115,7 +115,7 @@ public class SceneManager {
 
         dialogStage.setOnShown(event -> {
             double centerX = ownerStage.getX() + ownerStage.getWidth() / 2 - dialogStage.getWidth() / 2;
-            double centerY = ownerStage.getY() + ownerStage.getHeight() / 2 - dialogStage.getHeight() / 2;
+            double centerY = ownerStage.getY() + ownerStage.getHeight() / 2 - dialogStage.getHeight() / 2 + 50;
             dialogStage.setX(centerX);
             dialogStage.setY(centerY);
         });
