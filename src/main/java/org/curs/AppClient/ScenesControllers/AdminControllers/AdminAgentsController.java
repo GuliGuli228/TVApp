@@ -33,7 +33,7 @@ public class AdminAgentsController extends AbstractController {
 
     private void addTable(List<AppCache.AdminAgentResponse> adminAgentResponse, TableView<AppCache.AdminAgentResponse> TableBox) {
         TableColumn<AppCache.AdminAgentResponse,Integer> tableColumnAgentId = new TableColumn<>("ID Агента");
-        TableColumn<AppCache.AdminAgentResponse,String> tableColumnAgentLogin = new TableColumn<>("Логин Агента");
+        TableColumn<AppCache.AdminAgentResponse,String> tableColumnAgentLogin = new TableColumn<>("ФИО агента");
         TableColumn<AppCache.AdminAgentResponse,Double> tableColumnAgentPercent = new TableColumn<>("Ставка");
         TableColumn<AppCache.AdminAgentResponse,Double> tableColumnAgentIncome = new TableColumn<>("Прибыль");
         TableColumn<AppCache.AdminAgentResponse,Integer> tableColumnAgentAmountContracts = new TableColumn<>("Количество договоров");
