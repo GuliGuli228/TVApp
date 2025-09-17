@@ -12,7 +12,14 @@ public enum ApiPaths {
     GET_USER_DATA("/api/v1/user/login"),
     GET_AGENT_BY_USER_ID("/api/v1/agent/findByUserId"),
     GET_CONTRACTS_BY_AGENT_ID("/api/v1/contract/findByAgentId"),
-    GET_CUSTOMERS_BY_AGENT_ID("/api/v1/customer/getAllForAgent");
+    GET_CUSTOMERS_BY_AGENT_ID("/api/v1/customer/getAllForAgent"),
+
+    POST_TELECAST("/api/v1/telecast/addTelecast"),
+    POST_CUSTOMER("/api/v1/customer/addCustomer"),
+    POST_AGENT("/api/v1/agent/addAgent"),
+    POST_CONTRACT("/api/v1/contract/addContract"),
+    POST_PROMO("/api/v1/promo/addPromo");
+
 
     @Getter
     private final String path;
