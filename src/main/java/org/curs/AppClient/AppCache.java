@@ -168,19 +168,19 @@ public class AppCache {
                 AppCache.setLastScene(Scenes.ADMIN_CONTRACTS);
             }
             if(role.equals("Agent")){
-                int agentId = Objects.requireNonNull(ApiUtil.parametricRequest(
+                agentId = Objects.requireNonNull(ApiUtil.parametricRequest(
                         ApiPaths.GET_AGENT_BY_USER_ID,
-                        ApiUtil.RequestMethod.GET,
+                        ApiRequests.GET,
                         Map.of("userId", userId.toString()))).getAsJsonObject().get("id").getAsInt();
 
                 JsonArray contracts = Objects.requireNonNull(ApiUtil.parametricRequest(
                         ApiPaths.GET_CONTRACTS_BY_AGENT_ID,
-                        ApiUtil.RequestMethod.GET,
+                        ApiRequests.GET,
                         Map.of("agentId", Integer.toString(agentId)))).getAsJsonArray();
 
                 JsonArray customers = Objects.requireNonNull(ApiUtil.parametricRequest(
                         ApiPaths.GET_CUSTOMERS_BY_AGENT_ID,
-                        ApiUtil.RequestMethod.GET,
+                        ApiRequests.GET,
                         Map.of("agentId", Integer.toString(agentId)))).getAsJsonArray();
 
                 agentContractResponses = AppCache.parser(AgentContractResponse.class, contracts);
