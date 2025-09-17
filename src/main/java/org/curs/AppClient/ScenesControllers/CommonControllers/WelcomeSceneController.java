@@ -21,7 +21,6 @@ import java.net.HttpURLConnection;
 import java.util.Map;
 import java.util.Objects;
 
-import static org.curs.AppClient.Utils.ApiUtil.RequestMethod.GET;
 
 public class WelcomeSceneController {
 
