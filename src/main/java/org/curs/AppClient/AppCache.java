@@ -116,6 +116,9 @@ public class AppCache {
     public static Integer getUserId() {
         return AppCache.userId;
     }
+    public static Scenes getLastScene(){
+        return AppCache.lastScene;
+    }
     public static String getUserName() {
         return AppCache.userName;
     }
