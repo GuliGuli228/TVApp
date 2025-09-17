@@ -76,12 +76,12 @@
                   <Insets left="10.0" />
                </HBox.margin>
                <children>
-                  <Button minHeight="70.0" minWidth="70.0" mnemonicParsing="false" text="Button" visible="false" />
                   <ImageView fitHeight="60.0" fitWidth="60.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" x="5.0" y="5.0">
                      <image>
                         <Image url="@../Images/free-icon-data-processing-8438971(2).jpg" />
                      </image>
                   </ImageView>
+                  <Button fx:id="AdminFetchButton" minHeight="70.0" minWidth="70.0" mnemonicParsing="false" opacity="0.0" text="Button" />
                </children>
                <padding>
                   <Insets left="5.0" top="5.0" />

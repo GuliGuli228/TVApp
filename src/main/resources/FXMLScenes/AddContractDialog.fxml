@@ -79,7 +79,7 @@
          </content></ScrollPane>
       <HBox prefHeight="26.0" prefWidth="590.0">
          <children>
-            <TextField fx:id="PrePrice" editable="false" prefHeight="39.0" prefWidth="187.0" promptText="Стоимость догвора ">
+            <TextField editable="false" prefHeight="39.0" prefWidth="187.0" promptText="Стоимость договора ">
                <font>
                   <Font size="15.0" />
                </font>

@@ -79,7 +79,7 @@
                         <Image url="@../Images/free-icon-data-processing-8438971(2).jpg" />
                      </image>
                   </ImageView>
-                  <Button minHeight="70.0" minWidth="70.0" mnemonicParsing="false" text="Button" visible="false" />
+                  <Button fx:id="AgentFetchButton" minHeight="70.0" minWidth="70.0" mnemonicParsing="false" opacity="0.0" text="Button" />
                </children>
                <padding>
                   <Insets left="5.0" top="5.0" />
