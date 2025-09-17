@@ -25,8 +25,6 @@ public class AddAgentController extends AbstractDialogController {
     private TextField PasswordAgentField;
     @FXML
     private TextField PercentAgentField;
-    @FXML
-    private TextField CustomerName;
 
 
     @FXML
@@ -39,7 +37,6 @@ public class AddAgentController extends AbstractDialogController {
         textFieldRegexMap.put(LoginAgentField,"[A-Za-z]+");
         textFieldRegexMap.put(PasswordAgentField,"\\w+");
         textFieldRegexMap.put(PercentAgentField,"\\d{2}.\\d{2}");
-        textFieldRegexMap.put(CustomerName,"[A-Za-z]+");
 
         AddDialogButton.setOnAction(event -> {
             validate(textFieldRegexMap);
@@ -51,7 +48,6 @@ public class AddAgentController extends AbstractDialogController {
                     agentData.addProperty("login",LoginAgentField.getText());
                     agentData.addProperty("password",PasswordAgentField.getText());
                     agentData.addProperty("percent",PercentAgentField.getText());
-                    agentData.addProperty("customerName",CustomerName.getText());
 
                     ApiUtil.bodyRequest(ApiPaths.POST_AGENT, ApiRequests.POST, agentData);
                 } catch (IOException e) {
