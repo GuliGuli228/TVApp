@@ -23,6 +23,9 @@ public class Customer {
     @Column(name = "phone")
     private String phone;
 
+    @Column(name = "customer_name")
+    private String customerName;
+
     @Column(name = "contact_person")
     private String contactPerson;
 
