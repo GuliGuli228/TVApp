@@ -24,10 +24,7 @@ public class PromoService {
             for(Promo promo : promos.get()){
                 Integer promoId = promo.getId();
                 Integer customerId = promo.getCustomer().getId();
-
-                Duration durationTemp = promo.getDuration();// Temp
-
-                String duration = String.format("%02d:%02d:%02d", durationTemp.toHours(), durationTemp.toMinutesPart(), durationTemp.toSecondsPart());
+                String duration = promo.getDuration().toString();
                 String promoUrl = promo.getPromoUrl();
                 promoResponses.add(new PromoResponse(promoId, customerId, duration, promoUrl));
             }

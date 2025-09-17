@@ -12,6 +12,7 @@ import org.curs.AppClient.JavaFXApp;
 import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractController;
 import org.curs.AppClient.ScenesControllers.SceneManager;
 
+import java.time.Duration;
 import java.util.List;
 
 public class PromoController extends AbstractController {
@@ -39,9 +40,17 @@ public class PromoController extends AbstractController {
         TableColumn<AppCache.PromoResponse, String> tableColumnDuration = new TableColumn<>("Продолжительность");
         TableColumn<AppCache.PromoResponse, String> tableColumnUrl= new TableColumn<>("URL Ролика");
 
+
         tableColumnPromoId.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().promoId()));
         tableColumnCustomerId.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().customerId()));
-        tableColumnDuration.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().duration()));
+        tableColumnDuration.setCellValueFactory(cell -> {
+            Duration duration = Duration.parse(cell.getValue().duration());
+            String formatted = String.format("%02d:%02d:%02d",
+                    duration.toHours(),
+                    duration.toMinutesPart(),
+                    duration.toSecondsPart());
+            return new ReadOnlyObjectWrapper<>(formatted);
+        });
         tableColumnUrl.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().promoUrl()));
 
         tableColumnUrl.setMaxWidth(700);
