@@ -47,6 +47,42 @@ public class AddContractController extends AbstractDialogController {
             }
             DataField.getChildren().clear();
         });
+
+        ComputePrice.setOnAction(event -> {
+            contractPlaybacks = getChildrenData(DataField);
+            PrePrice.setText(String.valueOf(contractPlaybacks.stream().mapToDouble(AddPlaybackController.Playback::price).sum()));
+            AddDialogButton.setVisible(true);
+        });
+
+        AddDialogButton.setOnAction(event -> {
+            if (!contractPlaybacks.isEmpty()){
+                try {
+                    JsonArray playbacks = new JsonArray();
+                    JsonObject contractData = new JsonObject();
+                    contractData.addProperty("customerId", CustomerIdField.getText());
+                    contractData.addProperty("agentId", AppCache.getAgentId());
+
+
+                    for(AddPlaybackController.Playback playback : contractPlaybacks){
+                        JsonObject temp_playback = new JsonObject();
+                        temp_playback.addProperty("promo_id", playback.promoId());
+                        temp_playback.addProperty("time", playback.time());
+                        temp_playback.addProperty("date", playback.date());
+                        temp_playback.addProperty("telecastId", playback.telecastId());
+                        playbacks.add(temp_playback);
+                    }
+                    contractData.add("playbacks", playbacks);
+                    ApiUtil.bodyRequest(ApiPaths.POST_CONTRACT, ApiRequests.POST, contractData);
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                SceneManager.closeDialog(event);
+            }
+        });
+
+
+
     }
 
     private void AddPlaybackButtonClick(VBox vBox) {
