@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import org.curs.AppClient.AppCache;
 import org.curs.AppClient.Enums.ApiPaths;
 import org.curs.AppClient.Enums.ApiRequests;
+import org.curs.AppClient.Enums.Scenes;
 import org.curs.AppClient.JavaFXApp;
 import org.curs.AppClient.ScenesControllers.AdminControllers.AdminContractController;
 import org.curs.AppClient.ScenesControllers.AgentContollers.AgentContractController;
@@ -60,8 +61,14 @@ public class WelcomeSceneController {
             AppCache.loadCache();
 
 
-            if(role.equals("Admin"))SceneManager.showScene("AdminScene", JavaFXApp.getPrimaryStage(),new AdminContractController());
-            if(role.equals("Agent"))SceneManager.showScene("AgentScene", JavaFXApp.getPrimaryStage(),new AgentContractController());
+            if(role.equals("Admin")){
+                SceneManager.showScene("AdminScene", JavaFXApp.getPrimaryStage(),new AdminContractController());
+                AppCache.setLastScene(Scenes.ADMIN_CONTRACTS);
+            }
+            if(role.equals("Agent")){
+                SceneManager.showScene("AgentScene", JavaFXApp.getPrimaryStage(),new AgentContractController());
+                AppCache.setLastScene(Scenes.AGENT_CONTRACTS);
+            }
 
         }
         else{//FIXME
