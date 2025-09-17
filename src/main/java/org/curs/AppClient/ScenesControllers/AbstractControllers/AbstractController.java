@@ -1,5 +1,6 @@
 package org.curs.AppClient.ScenesControllers.AbstractControllers;
 
+import jakarta.annotation.Nullable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,8 +15,11 @@ public abstract class AbstractController {
 
     Logger logger = Logger.getLogger(this.getClass().getName());
 
-    //(required = false)
+
     /*---Admin Buttons---*/
+    /*---Not Required, may be null---*/
+    @FXML
+    protected Button AdminFetchButton;
     @FXML
     protected Button AdminAddButton;
     @FXML
@@ -34,10 +38,12 @@ public abstract class AbstractController {
     protected Button AdminAccountButton;
     /*-------------------*/
 
-    //(required = false)
     /*---Agent Buttons----*/
+    /*---Not Required, may be null---*/
     @FXML
     protected  Button AgentAddButton;
+    @FXML
+    protected Button AgentFetchButton;
     @FXML
     protected Button AgentContractButton;
     @FXML
@@ -63,6 +69,7 @@ public abstract class AbstractController {
             AdminTelecastButton.setOnAction(this::SwitchToTelecast);
             AdminPromosButton.setOnAction(this::SwitchToPromo);
             AdminAccountButton.setOnAction(this::SwitchToAccount);
+            AdminFetchButton.setOnAction(this::FetchData);
         }
         if(Objects.equals(AppCache.getRole(), "Agent")) {
             AgentContractButton.setOnAction(this::SwitchToAgentContract);
@@ -72,6 +79,7 @@ public abstract class AbstractController {
             AgentPromoButton.setOnAction(this::SwitchToPromo);
             AgentTelecastButton.setOnAction(this::SwitchToTelecast);
             AgentAccountButton.setOnAction(this::SwitchToAccount);
+            AgentFetchButton.setOnAction(this::FetchData);
         }
     }
     /*--- Admin Scenes--*/
@@ -120,5 +128,12 @@ public abstract class AbstractController {
         SceneManager.switchScene(Scenes.ACCOUNT);
     }
     /*------------------*/
+
+    /*---Common Buttons---*/
+    protected void FetchData(ActionEvent event)  {
+        logger.info("Fetching Data");
+        AppCache.loadCache();
+        SceneManager.switchScene(AppCache.getLastScene());
+    }
 
 }
