@@ -59,9 +59,9 @@
             </FlowPane>
          </children>
       </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="92.0" prefWidth="200.0">
          <children>
-            <Button id="AddButton" fx:id="AgentAddButton" minHeight="70.0" minWidth="70.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" stylesheets="@../Styles.css" text="+">
+            <Button id="AddButton" fx:id="AgentAddButton" minHeight="70.0" minWidth="70.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="70.0" stylesheets="@../Styles.css" text="+">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
@@ -69,18 +69,21 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </Button>
-            <Pane prefHeight="70.0" prefWidth="70.0">
+            <Pane id="ReloadButton" minHeight="70.0" minWidth="70.0" prefHeight="70.0" prefWidth="70.0" stylesheets="@../Styles.css">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
                <children>
-                  <ImageView fx:id="AgentReloadButton" fitHeight="70.0" fitWidth="70.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="AgentReloadButton" fitHeight="60.0" fitWidth="60.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" x="5.0" y="5.0">
                      <image>
-                        <Image url="@../Images/reload.png" />
+                        <Image url="@../Images/free-icon-data-processing-8438971(2).jpg" />
                      </image>
                   </ImageView>
                   <Button minHeight="70.0" minWidth="70.0" mnemonicParsing="false" text="Button" visible="false" />
                </children>
+               <padding>
+                  <Insets left="5.0" top="5.0" />
+               </padding>
             </Pane>
          </children>
          <opaqueInsets>

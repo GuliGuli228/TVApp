@@ -79,7 +79,7 @@
                   <Button minHeight="70.0" minWidth="70.0" mnemonicParsing="false" text="Button" visible="false" />
                   <ImageView fitHeight="60.0" fitWidth="60.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" x="5.0" y="5.0">
                      <image>
-                        <Image url="@../Images/reload.png" />
+                        <Image url="@../Images/free-icon-data-processing-8438971(2).jpg" />
                      </image>
                   </ImageView>
                </children>
