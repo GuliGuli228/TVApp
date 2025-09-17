@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.Setter;
 import org.curs.AppServer.model.Converters.DurationConverter;
 
-import java.sql.Time;
 import java.time.Duration;
 
 @Entity
@@ -30,5 +29,8 @@ public class Promo {
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
+
+    @Transient
+    private Integer customer_id;
 
 }
