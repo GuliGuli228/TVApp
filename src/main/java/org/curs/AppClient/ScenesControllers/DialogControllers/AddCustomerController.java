@@ -33,8 +33,22 @@ public class AddCustomerController extends AbstractDialogController {
 
         AddDialogButton.setOnAction(event -> {
             validate(textFieldRegexMap);
-            //TODO Rest запрос
-            if (isValid(textFieldRegexMap)) SceneManager.closeDialog(event);
+            if (isValid(textFieldRegexMap)) {
+                try {
+                    JsonObject customerData = new JsonObject();
+                    customerData.addProperty("phone", CustomerPhoneNumber.getText());
+                    customerData.addProperty("contactPerson", CustomerContactPersonField.getText());
+                    customerData.addProperty("iban", CustomerIbanField.getText());
+                    customerData.addProperty("customerName", CustomerName.getText());
+
+                    ApiUtil.bodyRequest(ApiPaths.POST_CUSTOMER, ApiRequests.POST, customerData);
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                SceneManager.closeDialog(event);
+            }
         });
         resetFromError(CustomerPhoneNumber);
         resetFromError(CustomerIbanField);
