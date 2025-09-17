@@ -2,7 +2,9 @@ package org.curs.AppClient;
 
 
 import com.google.gson.*;
+import jakarta.annotation.Nullable;
 import org.curs.AppClient.Enums.ApiPaths;
+import org.curs.AppClient.Enums.ApiRequests;
 import org.curs.AppClient.Enums.Scenes;
 import org.curs.AppClient.Utils.ApiUtil;
 
@@ -14,6 +16,7 @@ import java.util.Objects;
 import java.util.logging.Logger;
 
 public class AppCache {
+    @Nullable private static Integer agentId;
     private static Integer userId;
     private static String userName;
     private static String role;
@@ -104,6 +107,9 @@ public class AppCache {
         AppCache.login = login;
     }
 
+    public static Integer getAgentId(){
+        return AppCache.agentId;
+    }
     public static String getUserLogin() {
         return AppCache.login;
     }
