@@ -29,11 +29,17 @@ public class AddContractController extends AbstractDialogController {
     @FXML
     private Button AddPlaybackButton;
     @FXML
-    private VBox DataField;
-    @FXML
-    private Button ComputePrice;
+    private TextField PrePrice;
 
-    private final AtomicReference<List<AppCache.PromoResponse>> currentCustomerPromos = new AtomicReference<>(new ArrayList<>());;
+
+    @FXML
+    private VBox DataField;
+
+
+    private final AtomicReference<List<AppCache.PromoResponse>> currentCustomerPromos = new AtomicReference<>(new ArrayList<>());
+    private List<AddPlaybackController.Playback> contractPlaybacks;
+
+
     @FXML
     public void initialize() {
         List<AppCache.PromoResponse> promos = AppCache.getPromoResponses();
@@ -41,6 +47,7 @@ public class AddContractController extends AbstractDialogController {
 
         AddPlaybackButton.setOnAction(e->AddPlaybackButtonClick(DataField));
         CancelDialogButton.setOnAction(SceneManager::closeDialog);
+
         CustomerIdField.textProperty().addListener((observable, oldValue, newValue) -> {
             if(!newValue.isEmpty()){
                 currentCustomerPromos.set(promos.stream().
@@ -96,11 +103,24 @@ public class AddContractController extends AbstractDialogController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLScenes/PlaybackElement.fxml"));
             loader.setController(new AddPlaybackController(List.copyOf(currentCustomerPromos.get()), vBox));
+            loader.setController(controller);
             VBox element = loader.load();
+            element.getProperties().put("controller", controller);
             vBox.getChildren().add(element);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    private List<AddPlaybackController.Playback> getChildrenData(VBox vBox) {
+        List<AddPlaybackController.Playback> playbacks = new ArrayList<>();
+        for (Node node : vBox.getChildren()) {
+            AddPlaybackController controller = (AddPlaybackController) node.getProperties().get("controller");
+            if (controller != null){
+                AddPlaybackController.Playback data = controller.getData();
+                playbacks.add(data);
+            }
+        }
+        return playbacks;
+    }
 }
