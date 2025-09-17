@@ -1,15 +1,22 @@
 package org.curs.AppClient.ScenesControllers.DialogControllers;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.curs.AppClient.AppCache;
+import org.curs.AppClient.Enums.ApiPaths;
+import org.curs.AppClient.Enums.ApiRequests;
 import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractDialogController;
 import org.curs.AppClient.ScenesControllers.ElementConntrollers.AddPlaybackController;
 import org.curs.AppClient.ScenesControllers.SceneManager;
+import org.curs.AppClient.Utils.ApiUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
