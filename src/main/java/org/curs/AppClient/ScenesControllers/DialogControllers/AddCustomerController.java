@@ -1,13 +1,18 @@
 package org.curs.AppClient.ScenesControllers.DialogControllers;
 
+import com.google.gson.JsonObject;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
+import org.curs.AppClient.Enums.ApiPaths;
+import org.curs.AppClient.Enums.ApiRequests;
 import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractDialogController;
 import org.curs.AppClient.ScenesControllers.SceneManager;
+import org.curs.AppClient.Utils.ApiUtil;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
