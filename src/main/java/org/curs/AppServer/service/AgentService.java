@@ -1,12 +1,16 @@
 package org.curs.AppServer.service;
 
+import jakarta.transaction.Transactional;
 import org.curs.AppServer.controllers.AgentController;
 import org.curs.AppServer.entities.Agent;
 import org.curs.AppServer.entities.Contract;
+import org.curs.AppServer.entities.User;
 import org.curs.AppServer.model.DTO.AdminResponses.AdminAgentResponse;
+import org.curs.AppServer.model.DTO.AdminResponses.AgentAddRequest;
 import org.curs.AppServer.repository.AgentRepository;
 import org.curs.AppServer.repository.ContractRepository;
 import org.curs.AppServer.repository.PlaybackRepository;
+import org.curs.AppServer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +27,8 @@ public class AgentService {
     private ContractRepository contractRepository;
     @Autowired
     private PlaybackRepository playbackRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     private final static Logger log = Logger.getLogger(AgentController.class.getName());
 
@@ -56,5 +62,23 @@ public class AgentService {
     public Optional<Agent> findAgentByUserId(Integer userId){
         log.info("getting agent by user id: " + userId);
         return agentRepository.findAgentByUserId(userId);
+    }
+    @Transactional
+    public void addAgent(AgentAddRequest response){
+
+        User user = new User();
+        user.setName(response.agentName());
+        user.setLogin(response.login());
+        user.setRole("Agent");
+        user.setPassword(response.password());
+
+        userRepository.save(user);
+
+        Agent agent = new Agent();
+        agent.setAgentName(response.agentName());
+        agent.setPercent(response.percent());
+        agent.setUser(user);
+
+        agentRepository.save(agent);
     }
 }
