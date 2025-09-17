@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="DataPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="400.0" stylesheets="@../Styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="DataPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="400.0" stylesheets="@../Styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label styleClass="AddLabel" stylesheets="@../Styles.css" text="Номер телефона">
          <font>
@@ -57,6 +57,22 @@
          </font>
          <VBox.margin>
             <Insets bottom="10.0" left="5.0" right="5.0" />
+         </VBox.margin>
+      </TextField>
+      <Label styleClass="AddLabel" stylesheets="@../Styles.css" text="Название заказчика">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" />
+         </VBox.margin>
+      </Label>
+      <TextField fx:id="CustomerName">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="10.0" left="5.0" top="5.0" />
          </VBox.margin>
       </TextField>
       <FlowPane alignment="TOP_CENTER" hgap="50.0" prefHeight="23.0" prefWidth="400.0">
