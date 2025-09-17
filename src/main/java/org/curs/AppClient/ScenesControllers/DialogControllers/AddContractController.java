@@ -44,7 +44,6 @@ public class AddContractController extends AbstractDialogController {
     public void initialize() {
         List<AppCache.PromoResponse> promos = AppCache.getPromoResponses();
         AddPlaybackButton.setDisable(true);
-
         AddPlaybackButton.setOnAction(e->AddPlaybackButtonClick(DataField));
         CancelDialogButton.setOnAction(SceneManager::closeDialog);
 
