@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.curs.AppClient.Enums.ApiPaths;
+import org.curs.AppClient.Enums.ApiRequests;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -12,18 +13,15 @@ import java.util.Map;
 
 public class ApiUtil {
     private static final String SERVER_URL = "http://localhost:8085";
-    public  enum RequestMethod{POST , GET, PUT, DELETE};
 
     //TODO Убрать все методы кроме parametricRequest
-    public static HttpURLConnection fetchApi(String apiPath, RequestMethod requestMethod, JsonObject jsonObject) throws IOException {
+    public static HttpURLConnection fetchApi(String apiPath, ApiRequests requestMethod, JsonObject jsonObject) throws IOException {
         URL url = new URL(SERVER_URL + apiPath); // Url сервера
         HttpURLConnection connection = (HttpURLConnection) url.openConnection(); // Открываю подключение по Url сервера
         connection.setRequestMethod(requestMethod.name()); // Устанавливаю тип запроса (Одно подключение - один запрос)
 
-        if (jsonObject!=null && requestMethod == RequestMethod.POST) {
+        if (jsonObject!=null && requestMethod == ApiRequests.POST) {
             connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8"); //Настраиваю тип передаваемых значений
-            connection.setRequestProperty("Accept", "application/json");//Настраиваю тип получаемых значений
-
             connection.setDoOutput(true);// Открываю канал для передачи данных
 
             OutputStream os = connection.getOutputStream(); // Открываю Stream внутри канала
@@ -61,9 +59,9 @@ public class ApiUtil {
 
         return new JsonParser().parse(sb.toString());
     }
-
+    //TODO реализовать проверку кода ответа
     public static JsonElement parametricRequest(ApiPaths apiPath,
-                                                RequestMethod requestMethod,
+                                                ApiRequests requestMethod,
                                                 Map<String, String> parameters) throws IOException{
 
         StringBuilder path = new StringBuilder();
@@ -79,7 +77,7 @@ public class ApiUtil {
         connection.setRequestMethod(requestMethod.name());
         connection.setRequestProperty("Accept", "application/json");
 
-        if (requestMethod == RequestMethod.GET) {
+        if (requestMethod == ApiRequests.GET) {
             InputStream input = connection.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"));
 
