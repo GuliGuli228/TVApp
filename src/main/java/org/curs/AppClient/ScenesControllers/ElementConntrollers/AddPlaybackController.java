@@ -73,7 +73,8 @@ public class AddPlaybackController {
                                     double minutes1 = customerPromos.stream().
                                             filter(promo -> promo.promoId().equals(promoId)).
                                             map(AppCache.PromoResponse::duration).
-                                            mapToDouble(duration -> Duration.parse(duration).toHours() * 60
+                                            mapToDouble(duration ->
+                                                    Duration.parse(duration).toHours() * 60
                                                     + Duration.parse(duration).toMinutes()
                                                     + (double) Duration.parse(duration).toSecondsPart() /60)
                                             .sum();
@@ -95,5 +96,19 @@ public class AddPlaybackController {
     private void DeletePlayback(ActionEvent actionEvent) {
         parent.getChildren().remove(root);
         parent.requestFocus();
+    }
+    public Playback getData() {
+        Integer promoId = PromoIDCombobox.getValue();
+        String time = String.format("%02d:%02d:00", Hours.getValue(), Minutes.getValue());
+        String date = DatePicker.getValue().toString();
+        Integer telecastId = telecasts.stream()
+                .filter(telecastResponse -> telecastResponse.telecastName().equals(Telecast.getValue()))
+                .map(AppCache.TelecastResponse::id)
+                .findFirst()
+                .orElse(null);
+        Double price = Double.parseDouble(Price.getText());
+        System.out.println(price);
+
+        return new Playback(promoId, time, date, telecastId, price);
     }
 }
