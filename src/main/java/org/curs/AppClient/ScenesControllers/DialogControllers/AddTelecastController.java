@@ -30,8 +30,8 @@ public class AddTelecastController extends AbstractDialogController {
         Map<TextInputControl,String> textFieldRegexMap = new HashMap<>();
 
         textFieldRegexMap.put(TelecastNameField, "[^~\\+\\$@\\*\\(\\)]+");
-        textFieldRegexMap.put(TelecastRatingField, "\\d{2}.\\d{2}");
-        textFieldRegexMap.put(TelecastMinutePrice, "\\d*.\\d{2}");
+        textFieldRegexMap.put(TelecastRatingField, "\\d{1}.\\d{2}");
+        textFieldRegexMap.put(TelecastMinutePrice, "\\d+.\\d{2}");
 
         AddDialogButton.setOnAction(event -> {
             validate(textFieldRegexMap);
