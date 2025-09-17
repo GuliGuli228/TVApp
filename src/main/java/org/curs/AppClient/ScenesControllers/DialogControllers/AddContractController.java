@@ -27,6 +27,8 @@ public class AddContractController extends AbstractDialogController {
     @FXML
     private TextField CustomerIdField;
     @FXML
+    private Button ComputePrice;
+    @FXML
     private Button AddPlaybackButton;
     @FXML
     private TextField PrePrice;
@@ -58,6 +60,8 @@ public class AddContractController extends AbstractDialogController {
             else {
                 currentCustomerPromos.set(null);
                 AddPlaybackButton.setDisable(true);
+                AddDialogButton.setVisible(false);
+                PrePrice.setText("");
             }
             DataField.getChildren().clear();
         });
@@ -102,7 +106,7 @@ public class AddContractController extends AbstractDialogController {
     private void AddPlaybackButtonClick(VBox vBox) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLScenes/PlaybackElement.fxml"));
-            loader.setController(new AddPlaybackController(List.copyOf(currentCustomerPromos.get()), vBox));
+            Object controller = new AddPlaybackController(List.copyOf(currentCustomerPromos.get()), vBox);
             loader.setController(controller);
             VBox element = loader.load();
             element.getProperties().put("controller", controller);
