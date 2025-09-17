@@ -17,11 +17,11 @@ public class AddPromoController extends AbstractDialogController {
     @FXML
     private TextField CustomerIdField;
     @FXML
-    private ComboBox<Integer> Hours;
+    private ComboBox<String> Hours;
     @FXML
-    private ComboBox<Integer> Minutes;
+    private ComboBox<String> Minutes;
     @FXML
-    private ComboBox<Integer> Seconds;
+    private ComboBox<String> Seconds;
 
     @FXML
     public void initialize(){
@@ -37,6 +37,7 @@ public class AddPromoController extends AbstractDialogController {
         Hours.getItems().addAll(Arrays.stream(numbers).boxed().toArray(Integer[]::new));
         Minutes.getItems().addAll(Arrays.stream(numbers).boxed().toArray(Integer[]::new));
         Seconds.getItems().addAll(Arrays.stream(numbers).boxed().toArray(Integer[]::new));
+        Minutes.getItems().addAll(Arrays.stream(numbers).mapToObj(String::valueOf).toArray(String[]::new));
 
         AddDialogButton.setOnAction(event -> {
             validate(textFieldRegexMap);
