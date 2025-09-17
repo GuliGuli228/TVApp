@@ -92,7 +92,26 @@ public class ApiUtil {
 
             return new JsonParser().parse(sb.toString());
         }
-        //TODO: Затычка для метода, в будущем реализуется;
         return  null;
+    }
+
+    //TODO реализовать проверку кода ответа
+    public static void bodyRequest(ApiPaths apiPath, ApiRequests requestMethod, JsonObject jsonObject) throws IOException{
+
+        URL url = new URL(SERVER_URL+ apiPath.getPath());
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod(requestMethod.name());
+        connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+
+        if (jsonObject!=null && requestMethod == ApiRequests.POST) {
+            connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8"); //Настраиваю тип передаваемых значений
+            connection.setDoOutput(true);// Открываю канал для передачи данных
+
+            OutputStream os = connection.getOutputStream(); // Открываю Stream внутри канала
+            os.write(jsonObject.toString().getBytes());// передаю в Stream данные
+            os.flush();// Проталкиваю данные из буфера
+            os.close();// Закрываю Stream
+            connection.getResponseCode();
+        }
     }
 }
