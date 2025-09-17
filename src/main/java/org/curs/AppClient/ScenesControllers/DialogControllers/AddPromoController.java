@@ -1,10 +1,16 @@
 package org.curs.AppClient.ScenesControllers.DialogControllers;
 
+import com.google.gson.JsonObject;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.curs.AppClient.Enums.ApiPaths;
+import org.curs.AppClient.Enums.ApiRequests;
 import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractDialogController;
 import org.curs.AppClient.ScenesControllers.SceneManager;
+import org.curs.AppClient.Utils.ApiUtil;
 
+import java.io.IOException;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,19 +40,32 @@ public class AddPromoController extends AbstractDialogController {
 
         int[] numbers = IntStream.rangeClosed(0, 60).toArray();
 
-        Hours.getItems().addAll(Arrays.stream(numbers).boxed().toArray(Integer[]::new));
-        Minutes.getItems().addAll(Arrays.stream(numbers).boxed().toArray(Integer[]::new));
-        Seconds.getItems().addAll(Arrays.stream(numbers).boxed().toArray(Integer[]::new));
+        Hours.getItems().addAll(Arrays.stream(numbers).mapToObj(String::valueOf).toArray(String[]::new));
         Minutes.getItems().addAll(Arrays.stream(numbers).mapToObj(String::valueOf).toArray(String[]::new));
+        Seconds.getItems().addAll(Arrays.stream(numbers).mapToObj(String::valueOf).toArray(String[]::new));
 
         AddDialogButton.setOnAction(event -> {
             validate(textFieldRegexMap);
 
-            int  hours = Hours.getSelectionModel().getSelectedItem();
-            int  minute = Minutes.getSelectionModel().getSelectedItem();
-            int  second = Seconds.getSelectionModel().getSelectedItem();
+            int  hours = Integer.parseInt(Hours.getSelectionModel().getSelectedItem());
+            int  minute = Integer.parseInt(Minutes.getSelectionModel().getSelectedItem());
+            int  second = Integer.parseInt(Seconds.getSelectionModel().getSelectedItem());
 
-            if (isValid(textFieldRegexMap)) SceneManager.closeDialog(event);
+            if (isValid(textFieldRegexMap)) {
+                try {
+                    Duration duration = Duration.ofHours(hours).plusMinutes(minute).plusSeconds(second);
+                    JsonObject promoData = new  JsonObject();
+                    promoData.addProperty("promoUrl", URLPromoField.getText());
+                    promoData.addProperty("customer_id", CustomerIdField.getText());
+                    promoData.addProperty("duration", duration.toString());
+
+                    ApiUtil.bodyRequest(ApiPaths.POST_PROMO, ApiRequests.POST, promoData);
+
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+                SceneManager.closeDialog(event);
+            }
         });
 
         URLPromoField.setOnMouseClicked(event -> resetFromError(URLPromoField));
