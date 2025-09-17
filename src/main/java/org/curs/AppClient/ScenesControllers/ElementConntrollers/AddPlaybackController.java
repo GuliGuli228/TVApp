@@ -43,6 +43,9 @@ public class AddPlaybackController {
     private final Integer[] PromoIds;
     private final String[] telecastsNames = telecasts.stream().map(AppCache.TelecastResponse::telecastName).toArray(String[]::new);
 
+
+    public record Playback(Integer promoId, String time, String date, Integer telecastId, Double price) {}
+
     public AddPlaybackController(List<AppCache.PromoResponse> customerPromos, VBox parent) {
        PromoIds = customerPromos.stream().map(AppCache.PromoResponse::promoId).toArray(Integer[]::new);
        this.customerPromos = customerPromos;
