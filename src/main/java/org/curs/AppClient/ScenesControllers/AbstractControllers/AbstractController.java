@@ -17,9 +17,9 @@ import java.util.logging.Logger;
 public abstract class AbstractController {
 
     Logger logger = Logger.getLogger(this.getClass().getName());
-    ScheduledExecutorService service = Executors.newScheduledThreadPool(1);
-    int delay = 10;
-    private void startTimer(){
+    static ScheduledExecutorService service = Executors.newScheduledThreadPool(1);
+    static int delay = 10;
+    public static void startTimer(){
         service.schedule(() -> {
             AppCache.loadCache();
             SceneManager.switchScene(AppCache.getPreviousScene());
@@ -80,7 +80,6 @@ public abstract class AbstractController {
 
     @FXML
     public void initialize() {
-        this.startTimer();
         if(Objects.equals(AppCache.getRole(), "Admin")) {
             AdminContractButton.setOnAction(this::SwitchToAdminContract);
             AdminCustomersButton.setOnAction(this::SwitchToAdminCustomers);

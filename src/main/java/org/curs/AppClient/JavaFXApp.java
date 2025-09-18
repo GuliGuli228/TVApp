@@ -3,6 +3,7 @@ package org.curs.AppClient;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import lombok.Getter;
+import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractController;
 import org.curs.AppClient.ScenesControllers.CommonControllers.WelcomeSceneController;
 import org.curs.AppServer.TvApp;
 import org.curs.AppClient.ScenesControllers.SceneManager;

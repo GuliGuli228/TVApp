@@ -12,6 +12,7 @@ import org.curs.AppClient.Enums.ApiPaths;
 import org.curs.AppClient.Enums.ApiRequests;
 import org.curs.AppClient.Enums.Scenes;
 import org.curs.AppClient.JavaFXApp;
+import org.curs.AppClient.ScenesControllers.AbstractControllers.AbstractController;
 import org.curs.AppClient.ScenesControllers.AdminControllers.AdminContractController;
 import org.curs.AppClient.ScenesControllers.AgentContollers.AgentContractController;
 import org.curs.AppClient.ScenesControllers.SceneManager;
@@ -59,6 +60,7 @@ public class WelcomeSceneController {
             AppCache.setUserLogin(login);
 
             AppCache.loadCache();
+            AbstractController.startTimer();
 
 
             if(role.equals("Admin")){
