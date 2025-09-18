@@ -9,11 +9,23 @@ import org.curs.AppClient.ScenesControllers.SceneManager;
 import org.curs.AppClient.Enums.Scenes;
 
 import java.util.Objects;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 public abstract class AbstractController {
 
     Logger logger = Logger.getLogger(this.getClass().getName());
+    ScheduledExecutorService service = Executors.newScheduledThreadPool(1);
+    int delay = 10;
+    private void startTimer(){
+        service.schedule(() -> {
+            AppCache.loadCache();
+            SceneManager.switchScene(AppCache.getPreviousScene());
+            },
+            delay, TimeUnit.MINUTES);
+    }
 
 
     /*---Admin Buttons---*/
@@ -22,6 +34,10 @@ public abstract class AbstractController {
     protected Button AdminFetchButton;
     @FXML
     protected Button AdminAddButton;
+    @FXML
+    protected Button AdminUpdateButton;
+    @FXML
+    protected Button AdminDeleteButton;
     @FXML
     protected Button AdminContractButton;
     @FXML
@@ -45,6 +61,10 @@ public abstract class AbstractController {
     @FXML
     protected Button AgentFetchButton;
     @FXML
+    protected Button AgentUpdateButton;
+    @FXML
+    protected Button AgentDeleteButton;
+    @FXML
     protected Button AgentContractButton;
     @FXML
     protected Button AgentPlaybackButton;
@@ -60,6 +80,7 @@ public abstract class AbstractController {
 
     @FXML
     public void initialize() {
+        this.startTimer();
         if(Objects.equals(AppCache.getRole(), "Admin")) {
             AdminContractButton.setOnAction(this::SwitchToAdminContract);
             AdminCustomersButton.setOnAction(this::SwitchToAdminCustomers);
@@ -133,7 +154,7 @@ public abstract class AbstractController {
     protected void FetchData(ActionEvent event)  {
         logger.info("Fetching Data");
         AppCache.loadCache();
-        SceneManager.switchScene(AppCache.getLastScene());
+        SceneManager.switchScene(AppCache.getPreviousScene());
     }
 
 }
