@@ -37,6 +37,7 @@ public class CustomerService {
             String iban = customer.getIban();
             String phone = customer.getPhone();
             String contactPerson = customer.getContactPerson();
+            String customerName =customer.getCustomerName();
             Integer amountOfContracts = contracts.get().size();
             Double priceOfContracts = contracts.stream()
                     .flatMap(List::stream)
@@ -44,7 +45,7 @@ public class CustomerService {
                     .mapToDouble(list -> list.stream()
                             .flatMap(List::stream)
                             .mapToDouble(playback -> playback.getPromo().getDuration().toMinutes() * playback.getTelecast().getMinuteCost()).sum()).sum();
-            response.add(new CustomersResponse(customerId, iban, phone, contactPerson, amountOfContracts, priceOfContracts));
+            response.add(new CustomersResponse(customerId, iban, phone,customerName, contactPerson, amountOfContracts, priceOfContracts));
         }
         return Optional.of(response);
     }
@@ -58,6 +59,7 @@ public class CustomerService {
             Integer customerId = customer.getId();
             String iban = customer.getIban();
             String phone = customer.getPhone();
+            String customerName =customer.getCustomerName();
             String contactPerson = customer.getContactPerson();
             Integer amountOfContracts = contracts.get().size();
             Double price  = contracts.stream()
@@ -66,7 +68,7 @@ public class CustomerService {
                     .mapToDouble(list ->list.stream()
                             .flatMap(List::stream)
                             .mapToDouble(playback -> playback.getPromo().getDuration().toMinutes() * playback.getTelecast().getMinuteCost()).sum()).sum();
-            response.add(new CustomersResponse(customerId, iban, phone, contactPerson, amountOfContracts, price));
+            response.add(new CustomersResponse(customerId, iban, phone, customerName, contactPerson, amountOfContracts, price));
         }
         return Optional.of(response);
     }
