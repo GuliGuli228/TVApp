@@ -24,8 +24,16 @@ public class PlaybackController extends AbstractController {
         List<AppCache.PlaybackResponse> playbackResponses= AppCache.getPlaybackResponses();
         System.out.println("playbackResponses: " + playbackResponses);
         this.addTable(playbackResponses, TableBox);
-        if (AppCache.getRole().equals("Agent")) AgentAddButton.setDisable(true);
-        if(AppCache.getRole().equals("Admin")) AdminAddButton.setDisable(true);
+        if (AppCache.getRole().equals("Agent")) {
+            AgentAddButton.setDisable(true);
+            AgentUpdateButton.setDisable(true);
+            AgentDeleteButton.setDisable(true);
+        }
+        if(AppCache.getRole().equals("Admin")){
+            AdminAddButton.setDisable(true);
+            AdminUpdateButton.setDisable(true);
+            AdminDeleteButton.setDisable(true);
+        }
 
 
     }

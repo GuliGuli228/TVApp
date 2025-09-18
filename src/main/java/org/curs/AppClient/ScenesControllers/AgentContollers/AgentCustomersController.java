@@ -24,6 +24,8 @@ public class AgentCustomersController extends AbstractController {
         System.out.println("customersResponses: " + customersResponses);
         this.addTable(customersResponses, TableBox);
         AgentAddButton.setDisable(true);
+        AgentDeleteButton.setDisable(true);
+        AgentUpdateButton.setDisable(true);
 
 
     }

@@ -29,6 +29,7 @@ public class AdminAgentsController extends AbstractController {
         AdminAddButton.setOnAction(event -> {
             SceneManager.showDialog(Dialogs.ADD_AGENT, JavaFXApp.getPrimaryStage());
         });
+        AdminUpdateButton.setOnAction(event -> {});
     }
 
     private void addTable(List<AppCache.AdminAgentResponse> adminAgentResponse, TableView<AppCache.AdminAgentResponse> TableBox) {

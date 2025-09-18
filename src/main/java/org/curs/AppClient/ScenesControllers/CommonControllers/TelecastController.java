@@ -24,7 +24,11 @@ public class TelecastController extends AbstractController {
         super.initialize();
         List<AppCache.TelecastResponse> telecastResponses = AppCache.getTelecastResponses();
         this.addTable(telecastResponses, TableBox);
-        if(AppCache.getRole().equals("Agent")) AgentAddButton.setDisable(true);
+        if(AppCache.getRole().equals("Agent")){
+            AgentAddButton.setDisable(true);
+            AgentUpdateButton.setDisable(true);
+            AgentDeleteButton.setDisable(true);
+        }
         if(AppCache.getRole().equals("Admin")) AdminAddButton.setOnAction(event -> {
             SceneManager.showDialog(Dialogs.ADD_TELECAST, JavaFXApp.getPrimaryStage());
         });

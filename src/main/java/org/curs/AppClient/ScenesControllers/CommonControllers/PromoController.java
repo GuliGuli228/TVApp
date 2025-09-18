@@ -28,7 +28,11 @@ public class PromoController extends AbstractController {
             System.out.println(promoResponses);
         }
         this.addTable(promoResponses, TableBox);
-        if(AppCache.getRole().equals("Agent")) AgentAddButton.setDisable(true);
+        if(AppCache.getRole().equals("Agent")) {
+            AgentAddButton.setDisable(true);
+            AgentUpdateButton.setDisable(true);
+            AgentDeleteButton.setDisable(true);
+        }
         if(AppCache.getRole().equals("Admin")) AdminAddButton.setOnAction(event -> {
             SceneManager.showDialog(Dialogs.ADD_PROMO, JavaFXApp.getPrimaryStage());
         });

@@ -25,6 +25,8 @@ public class AgentContractController extends AbstractController {
         List<AppCache.AgentContractResponse> agentContractResponses = AppCache.getAgentContractResponses();
         System.out.println("agentContractResponses: " + agentContractResponses);
         this.addTable(agentContractResponses, TableBox);
+        AgentUpdateButton.setDisable(true);
+        AgentDeleteButton.setDisable(true);
         AgentAddButton.setOnAction(event -> {
             SceneManager.showDialog(Dialogs.ADD_CONTRACT, JavaFXApp.getPrimaryStage());
         });
