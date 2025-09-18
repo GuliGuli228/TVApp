@@ -33,24 +33,6 @@
 #WelcomeLable{
     -fx-font-family: Roboto;
 }
-#AddButton{
-    -fx-background-color: transparent;
-    -fx-border-width: 3;
-    -fx-border-radius: 10;
-    -fx-border-color: black;
-}
-#ReloadButton{
-    -fx-background-color: transparent;
-    -fx-border-width: 3;
-    -fx-border-radius: 10;
-    -fx-border-color: black;
-}
-#ReloadButton:hover {
-    -fx-border-color: #0b55c3;
-}
-#AddButton:hover{
-    -fx-border-color: #0b55c3;
-}
 
 #AccountButton{
     -fx-background-color: transparent;
@@ -95,7 +77,7 @@
 
 .table-view .column-header {
     -fx-font-family: Roboto;
-    -fx-font-size: 20px;
+    -fx-font-size: 18px;
 }
 
 .table-view .table-cell {
@@ -128,4 +110,13 @@
     -fx-border-radius: 5;
     -fx-border-width: 5;
     -fx-border-color: #013686;
+}
+.button.CRUDbuttons{
+    -fx-background-color: transparent;
+    -fx-border-width: 3;
+    -fx-border-radius: 10;
+    -fx-border-color: black;;
+}
+.button.CRUDbuttons:hover{
+    -fx-border-color: #0b55c3;
 }
