@@ -2,7 +2,6 @@ package org.curs.AppClient.ScenesControllers.DialogControllers;
 
 import com.google.gson.JsonObject;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import org.curs.AppClient.Enums.ApiPaths;
